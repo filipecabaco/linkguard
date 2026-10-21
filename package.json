@@ -1,6 +1,6 @@
 {
   "name": "linkguard",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Browser extension that flags scam, phishing and dangerous links and stops dangerous sites before they open.",
   "scripts": {
