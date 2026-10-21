@@ -16,6 +16,9 @@ const SAFE = [
   ["https://www.applebees.com/", ""],
   ["https://nodejs.org/", "Node.js"],
   ["https://github.com/x/y/blob/main/README.md", "README.md"],
+  // Text from several elements glued together: a Gmail attachment chip and a GitHub repo card.
+  ["https://mail.google.com/mail/u/0?ui=2&ik=3f7d106017&attid=0.1&permmsgid=msg-f:1879673", "20261021.pdfPreview"],
+  ["https://github.com/Phishing-Database/Phishing.Database", "Phishing.DatabaseGitHubhttps"],
   ["https://www.google.com/url?q=https://example.com/", "www.example.com"],
   ["https://accounts.google.com/signin", "Sign in"],
   ["https://example.com/about", "About us"],
@@ -28,7 +31,11 @@ const DANGEROUS = [
   ["https://paypal.com.verify-account.ru/", "PayPal"],
   ["javascript:alert(1)", "Click"],
   ["https://example.com/invoice.pdf.exe", "Invoice"],
-  ["https://evil.example/login", "www.mybank.com"]
+  ["https://evil.example/login", "www.mybank.com"],
+  // However the shown site is cased, a bare name pointing elsewhere is still caught.
+  ["https://evil.example/login", "paypal.com"],
+  ["https://evil.example/login", "PAYPAL.COM"],
+  ["https://evil.example/login", "PayPal.Com"]
 ];
 
 const SUSPICIOUS = [

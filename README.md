@@ -63,6 +63,7 @@ You can also load the repo folder unpacked: `chrome://extensions` → Developer 
 | `npm run test:firefox` | Firefox's pre-request blocking via `web-ext run` and a local server: the safe page arrives, the dangerous request never does. Set `FIREFOX_BIN` if Firefox isn't in the usual place. |
 | `TYPESAFE_API_KEY=… npm run test:e2e -- jev.live` | Live Jev tests: judgments from the extension's own background, the welcome page's paste-a-key flow, and a wrong key being explained. Skipped without a key. |
 | `npm run lint` | `web-ext lint` on the Firefox build (the store's validator). |
+| `npm run start:testsite` | A fake neighbourhood forum at `http://localhost:8080/` for trying the real extension by hand. Every link is graded live against what LinkGuard did to it. A *Smart checks* section holds scams the built-in checks miss, so any mark there came from Jev. Scam links on `*.localhost` really open onto fake pages, and the page lists which ones reached the server. `test/unit/cases.test.js` keeps the expected answers in line with the analyzer. |
 
 Why this split: Playwright can load Chromium extensions but not Firefox ones, and Firefox's automation can't open extension pages. So Firefox is tested by watching what reaches the network, which is the behaviour that matters for blocking anyway.
 

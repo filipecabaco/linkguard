@@ -1,0 +1,26 @@
+:root { --ink: #1d232b; --muted: #5d6773; --line: #dfe3e8; --bg: #f6f7f9; --card: #fff; --ok: #1f7a3d; --bad: #b42318; color-scheme: light; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--ink); font: 17px/1.55 system-ui, -apple-system, "Segoe UI", sans-serif; }
+main { max-width: 720px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { margin: 8px 0 0; font-size: 1.8rem; }
+.lede { margin: 4px 0 20px; color: var(--muted); }
+.testbar { position: sticky; top: 0; z-index: 1; display: flex; flex-wrap: wrap; gap: 4px 16px; align-items: center;
+  padding: 8px 16px; background: #fff8db; border-bottom: 1px solid #ecd98b; font-size: 15px; }
+.testbar label { margin-left: auto; }
+#score { font-weight: 600; }
+.post, .panel { margin: 12px 0; padding: 14px 16px; background: var(--card); border: 1px solid var(--line); border-radius: 10px; }
+.post header { font-size: 15px; } .post header span { color: var(--muted); }
+.post p { margin: 6px 0; }
+.answer { font-size: 14px; color: var(--muted); }
+.expect { display: inline-block; padding: 0 8px; border-radius: 99px; font-size: 13px; font-weight: 600; background: #e8f3ec; color: var(--ok); }
+[data-level="suspicious"] .expect, .expect[data-level="suspicious"] { background: #fff1d6; color: #8a5300; }
+[data-level="dangerous"] .expect, .expect[data-level="dangerous"] { background: #fde8e6; color: var(--bad); }
+.got.ok { color: var(--ok); } .got.bad { color: var(--bad); font-weight: 600; }
+.hide-answers .answer { display: none; }
+button { font: inherit; padding: 6px 14px; border: 1px solid var(--line); border-radius: 8px; background: #fff; cursor: pointer; }
+.urls { padding-left: 18px; } .urls li { margin: 6px 0; }
+code { font-size: 14px; overflow-wrap: anywhere; }
+#visits { font-size: 14px; } #visits .none { list-style: none; margin-left: -18px; color: var(--muted); }
+.note { color: var(--muted); font-size: 14px; }
+.fake form { display: grid; gap: 10px; max-width: 320px; }
+.fake input { display: block; width: 100%; font: inherit; padding: 6px 8px; }

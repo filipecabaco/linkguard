@@ -167,7 +167,11 @@
         const explicit = Boolean(m[1] || m[2]);
         const shownHost = m[3].toLowerCase();
         const shown = registrable(shownHost);
-        const looksLikeSite = explicit || !NOT_A_SITE.includes(m[4].toLowerCase());
+        // Pages split link text across elements and textContent glues the pieces ("20261021.pdf" + "Preview"),
+        // so a bare name only counts as a site if its ending is cased like one (com, COM, Com), not "pdfPreview".
+        const end = m[4];
+        const casedLikeSite = end === end.toLowerCase() || end === end.toUpperCase() || /^[A-Z][a-z]{1,2}$/.test(end);
+        const looksLikeSite = explicit || (casedLikeSite && !NOT_A_SITE.includes(end.toLowerCase()));
         if (looksLikeSite && shown !== reg && !sameOrSub(host, shown) && !redirects.includes(shown))
           add(60, `The link says ${m[0]} but goes to ${host}`, "This link isn't going where it says", "mismatch");
       }
