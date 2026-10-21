@@ -5,6 +5,7 @@
   "description": "Browser extension that flags scam, phishing and dangerous links and stops dangerous sites before they open.",
   "scripts": {
     "build": "node scripts/build.mjs",
+    "og-image": "node scripts/og-image.mjs",
     "test": "node --test \"test/unit/**/*.test.js\"",
     "test:e2e": "node scripts/build.mjs chrome && playwright test",
     "test:firefox": "node scripts/build.mjs firefox && node --test \"test/firefox/**/*.test.js\"",
@@ -12,6 +13,7 @@
     "start:chrome": "node scripts/build.mjs chrome && web-ext run --target chromium --source-dir dist/chrome",
     "start:firefox": "node scripts/build.mjs firefox && web-ext run --source-dir dist/firefox",
     "start:android": "node scripts/build.mjs firefox && web-ext run --target firefox-android --source-dir dist/firefox",
+    "start:testsite": "node test/manual/server.js",
     "package": "node scripts/build.mjs && web-ext build --source-dir dist/chrome --artifacts-dir dist --filename linkguard-chrome.zip --overwrite-dest && web-ext build --source-dir dist/firefox --artifacts-dir dist --filename linkguard-firefox.zip --overwrite-dest",
     "sign:firefox": "node scripts/build.mjs firefox && web-ext sign --source-dir dist/firefox --channel unlisted",
     "safari": "node scripts/build.mjs safari && xcrun safari-web-extension-converter dist/safari --project-location safari --app-name LinkGuard --bundle-identifier com.example.linkguard --swift --copy-resources --no-open --no-prompt --force"
