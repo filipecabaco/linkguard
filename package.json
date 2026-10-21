@@ -5,9 +5,9 @@
   "description": "Browser extension that flags scam, phishing and dangerous links and stops dangerous sites before they open.",
   "scripts": {
     "build": "node scripts/build.mjs",
-    "test": "node --test test/unit/",
+    "test": "node --test \"test/unit/**/*.test.js\"",
     "test:e2e": "node scripts/build.mjs chrome && playwright test",
-    "test:firefox": "node scripts/build.mjs firefox && node --test test/firefox/",
+    "test:firefox": "node scripts/build.mjs firefox && node --test \"test/firefox/**/*.test.js\"",
     "lint": "node scripts/build.mjs firefox && web-ext lint --source-dir dist/firefox",
     "start:chrome": "node scripts/build.mjs chrome && web-ext run --target chromium --source-dir dist/chrome",
     "start:firefox": "node scripts/build.mjs firefox && web-ext run --source-dir dist/firefox",
