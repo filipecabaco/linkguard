@@ -1,0 +1,6 @@
+node_modules/
+dist/
+safari/
+test-results/
+playwright-report/
+.web-extension-id

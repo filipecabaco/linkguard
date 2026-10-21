@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Before / after — site sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root { --kraft:#B48A5C; --label:#F6F5F1; --ground:#E9E4DA; --ink:#1C2238; --ink-2:#4A5068; --rule:#1C223833; --stamp:#E2382B; --stamp-text:#C1261B; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { width:1440px; height:900px; overflow:hidden; }
+  body { background:var(--ground); color:var(--ink); font:18px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .band { height:68px; background:var(--kraft); display:flex; align-items:center; gap:12px; padding:0 72px; }
+  .brand { font:800 21px/1 Archivo; font-stretch:80%; letter-spacing:.05em; text-transform:uppercase; }
+  nav { margin-left:auto; display:flex; gap:32px; font-weight:600; font-size:16px; }
+  .head { display:flex; align-items:flex-end; justify-content:space-between; gap:48px; padding:52px 72px 0; }
+  h1 { font:800 84px/.95 Archivo; font-stretch:72%; letter-spacing:-.015em; max-width:14ch; }
+  .act { text-align:right; }
+  .btn { display:inline-block; background:var(--ink); color:var(--label); border-radius:10px; padding:20px 34px; font-weight:700; font-size:20px; }
+  .act p { margin-top:10px; font-size:15px; color:var(--ink-2); }
+  .stage { display:grid; grid-template-columns: 1fr 1fr; gap:0; margin:44px 72px 0; background:var(--label); border-radius:4px; box-shadow:0 18px 40px #3D2A1433; height:500px; }
+  .mail { padding:34px 40px; border-right:1px solid var(--rule); position:relative; }
+  .tag { font:700 12px/1 Archivo; font-stretch:88%; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+  .meta { margin-top:18px; font-size:15px; color:var(--ink-2); border-bottom:1px solid var(--rule); padding-bottom:12px; }
+  .meta b { color:var(--ink); }
+  .body { margin-top:18px; font-size:17px; }
+  .body p { margin-bottom:12px; }
+  .lnk { color:#1a4fb5; text-decoration:underline wavy #E2382B; outline:3px double #E2382B; outline-offset:2px; background:#E2382B14; border-radius:3px; padding:0 2px; }
+  .m { display:inline-block; width:18px; height:18px; border-radius:3px; background:#C1261B; color:#fff; font:900 13px/18px Archivo; text-align:center; margin-right:5px; }
+  .after { padding:34px 40px; position:relative; }
+  .addr { margin-top:18px; border:1px solid var(--ink); border-radius:3px; padding:14px 18px; position:relative; }
+  .u { margin-top:6px; font:500 18px/1.4 ui-monospace,Menlo,monospace; }
+  .u mark { background:#E2382B1F; color:var(--stamp-text); font-weight:700; }
+  .stamp { position:absolute; right:-18px; top:-32px; transform:rotate(-9deg); border:5px double var(--stamp); color:var(--stamp-text); background:var(--label);
+    padding:8px 16px 6px; border-radius:6px; font:900 38px/1 Archivo; font-stretch:68%; letter-spacing:.06em; text-transform:uppercase; }
+  h2 { margin-top:22px; font:800 30px/1.05 Archivo; font-stretch:75%; }
+  ul { list-style:none; padding:0; margin-top:14px; border-top:2px solid var(--ink); }
+  li { padding:11px 0; border-bottom:1px solid var(--rule); font-size:16px; }
+  li::before { content:"✓ "; color:var(--stamp); font-weight:800; }
+  .go { margin-top:18px; display:inline-block; background:var(--ink); color:var(--label); border-radius:10px; padding:12px 20px; font-weight:700; font-size:15px; }
+</style></head>
+<body>
+  <header class="band">
+    <svg width="26" height="30" viewBox="0 0 30 34" fill="none" stroke="#1C2238" stroke-width="2.5"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+    <nav><span>How it works</span><span>Install</span><span>Privacy</span><span>GitHub</span></nav>
+  </header>
+  <div class="head">
+    <h1>See the trick before it gets you</h1>
+    <div class="act"><span class="btn">Download for Chrome</span><p>Free · about a minute to install · Edge, Brave, Firefox, Safari too</p></div>
+  </div>
+  <section class="stage">
+    <div class="mail">
+      <div class="tag">Example scam email</div>
+      <div class="meta"><b>PayPal Service</b> &lt;service@paypa1-mail.xyz&gt;<br>Your account is on hold</div>
+      <div class="body">
+        <p>We noticed unusual activity. To keep your account, confirm your details within 24 hours.</p>
+        <p><span class="lnk"><span class="m">!</span>www.paypal.com</span></p>
+        <p>Thank you,<br>The PayPal Team</p>
+      </div>
+    </div>
+    <div class="after">
+      <div class="tag">What LinkGuard shows when you click</div>
+      <h2>This link is pretending to be PayPal</h2>
+      <div class="addr"><div class="tag">It really goes to</div><div class="u">http://<mark>paypa1-account-verify.xyz</mark>/login</div><div class="stamp">Not safe</div></div>
+      <ul><li>Spells PayPal with a number 1 instead of the letter l</li><li>The text you clicked showed a different address</li><li>Asks you to log in without a private connection</li></ul>
+      <span class="go">Go back to safety</span>
+    </div>
+  </section>
+</body></html>

@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Install first — site sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root { --kraft:#B48A5C; --label:#F6F5F1; --ink:#1C2238; --ink-2:#4A5068; --rule:#1C223833; --stamp:#E2382B; --stamp-text:#C1261B; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { width:1440px; height:900px; overflow:hidden; }
+  body { background:var(--kraft); color:var(--ink); font:18px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .top { height:76px; display:flex; align-items:center; gap:12px; padding:0 72px; }
+  .brand { font:800 21px/1 Archivo; font-stretch:80%; letter-spacing:.05em; text-transform:uppercase; }
+  nav { margin-left:auto; display:flex; gap:32px; font-weight:600; font-size:16px; }
+  .hero { display:grid; grid-template-columns: 1fr 520px; gap:56px; padding:28px 72px 0; }
+  h1 { font:800 92px/.95 Archivo; font-stretch:72%; letter-spacing:-.015em; max-width:11ch; }
+  .lede { margin-top:18px; font-size:21px; max-width:40ch; }
+  .label { margin-top:34px; background:var(--label); border-radius:4px; box-shadow:0 18px 40px #3D2A1433; padding:28px 32px; }
+  .tabs { display:flex; gap:0; border:1px solid var(--ink); border-radius:6px; overflow:hidden; width:fit-content; font-weight:600; font-size:15px; }
+  .tabs span { padding:9px 16px; border-right:1px solid var(--ink); } .tabs span:last-child { border-right:0; }
+  .tabs .on { background:var(--ink); color:var(--label); }
+  .steps { display:grid; grid-template-columns: repeat(3, 1fr); gap:20px; margin-top:24px; }
+  .step { border-top:2px solid var(--ink); padding-top:12px; }
+  .n { font:900 34px/1 Archivo; font-stretch:70%; }
+  .step b { display:block; margin-top:6px; font-size:17px; }
+  .step p { font-size:15px; color:var(--ink-2); margin-top:4px; }
+  .shot { margin-top:10px; height:64px; border:1px solid var(--rule); border-radius:4px; background:#fff; font:13px ui-monospace,Menlo,monospace; color:var(--ink-2); padding:8px 10px; }
+  .toggle { display:inline-block; width:30px; height:16px; border-radius:8px; background:var(--ink); vertical-align:middle; margin-left:6px; }
+  .dl { display:flex; align-items:center; gap:22px; margin-top:26px; }
+  .btn { background:var(--ink); color:var(--label); border-radius:10px; padding:20px 34px; font-weight:700; font-size:20px; }
+  .quiet { color:var(--ink-2); text-decoration:underline; text-underline-offset:4px; font-size:16px; }
+  .spec { background:var(--label); border-radius:4px; box-shadow:0 18px 40px #3D2A1433; padding:36px 34px; position:relative; margin-top:12px; }
+  .spec .k { font:700 12px/1 Archivo; font-stretch:88%; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+  .spec .u { margin-top:8px; font:500 18px/1.4 ui-monospace,Menlo,monospace; }
+  .spec mark { background:#E2382B1F; color:var(--stamp-text); font-weight:700; }
+  .stamp { position:absolute; right:-24px; top:-30px; transform:rotate(-9deg); border:5px double var(--stamp); color:var(--stamp-text); background:var(--label);
+    padding:8px 16px 6px; border-radius:6px; font:900 38px/1 Archivo; font-stretch:68%; letter-spacing:.06em; text-transform:uppercase; }
+  .spec ul { list-style:none; padding:0; margin-top:22px; border-top:2px solid var(--ink); }
+  .spec li { padding:11px 0; border-bottom:1px solid var(--rule); font-size:16px; }
+  .spec li::before { content:"✓ "; color:var(--stamp); font-weight:800; }
+  .eg { margin-top:14px; font-size:13px; color:var(--ink-2); }
+</style></head>
+<body>
+  <header class="top">
+    <svg width="26" height="30" viewBox="0 0 30 34" fill="none" stroke="#1C2238" stroke-width="2.5"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+    <nav><span>What it does</span><span>Privacy</span><span>GitHub</span></nav>
+  </header>
+  <section class="hero">
+    <div>
+      <h1>Stop scam links before they open</h1>
+      <p class="lede">Free browser add-on. It marks risky links on every page and blocks dangerous sites, with the reasons in plain words.</p>
+      <div class="label">
+        <div class="tabs"><span class="on">Chrome</span><span>Edge</span><span>Brave</span><span>Firefox</span><span>Safari</span></div>
+        <div class="steps">
+          <div class="step"><span class="n">1</span><b>Download and unzip</b><p>You get a folder called linkguard.</p><div class="shot">linkguard-chrome.zip</div></div>
+          <div class="step"><span class="n">2</span><b>Turn on Developer mode</b><p>On the chrome://extensions page.</p><div class="shot">Developer mode <span class="toggle"></span></div></div>
+          <div class="step"><span class="n">3</span><b>Load unpacked</b><p>Pick the linkguard folder. Done.</p><div class="shot">[ Load unpacked ]</div></div>
+        </div>
+        <div class="dl"><span class="btn">Download for Chrome</span><span class="quiet">About a minute · no account needed</span></div>
+      </div>
+    </div>
+    <aside class="spec">
+      <div class="k">A link that said www.paypal.com really goes to</div>
+      <div class="u">http://<mark>paypa1-account-verify.xyz</mark>/login</div>
+      <div class="stamp">Not safe</div>
+      <ul><li>Spells PayPal with a number 1</li><li>The link showed a different address</li><li>Asks for a login without a private connection</li></ul>
+      <p class="eg">Example warning. The address is made up.</p>
+    </aside>
+  </section>
+</body></html>

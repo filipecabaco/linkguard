@@ -1,0 +1,13 @@
+/* LinkGuard in-page marks. Injected into every site, so keep it small and specific. State is carried by form, not colour alone:
+   suspicious = dashed amber outline + "?" sticker, dangerous = double red outline + filled "!" stamp. */
+a.lg-flag { border-radius: 3px; text-decoration-style: wavy !important; text-decoration-thickness: 1.5px !important; }
+a.lg-suspicious { outline: 2px dashed #8A6500 !important; outline-offset: 1px; background-color: rgba(242, 183, 5, .18) !important; text-decoration-color: #8A6500 !important; }
+a.lg-dangerous { outline: 3px double #E2382B !important; outline-offset: 1px; background-color: rgba(226, 56, 43, .12) !important; text-decoration-color: #E2382B !important; }
+a.lg-disabled { cursor: not-allowed !important; opacity: .7; }
+a.lg-checking:not(.lg-flag) { text-decoration: underline dotted #4A5068 !important; }
+
+.lg-mark { all: initial; display: inline-flex !important; align-items: center; justify-content: center; vertical-align: .1em;
+  width: 1.05em; height: 1.05em; margin-right: .3em; border-radius: 3px; box-sizing: border-box;
+  font: 900 .78em/1 "Arial Narrow", "Roboto Condensed", system-ui, sans-serif !important; text-decoration: none !important; cursor: inherit; }
+.lg-mark[data-level="dangerous"] { background: #C1261B; color: #FFFFFF; box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 2px #C1261B; }
+.lg-mark[data-level="suspicious"] { background: #F2B705; color: #1C2238; border: 1.5px dashed #1C2238; }

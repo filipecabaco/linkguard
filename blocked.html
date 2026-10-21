@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LinkGuard stopped this page</title>
+<link rel="stylesheet" href="ui.css">
+<style>
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+  .sheet { flex: 1; margin: 0 clamp(16px, 4vw, 56px) clamp(16px, 4vw, 56px); background: var(--label); border-radius: 0 0 4px 4px;
+    box-shadow: var(--shadow); display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, .85fr); }
+  .main { padding: clamp(28px, 5vw, 64px) clamp(20px, 5vw, 72px); border-right: 1px solid var(--rule); display: flex; flex-direction: column; }
+  h1 { font-size: clamp(40px, 5vw, 64px); max-width: 13ch; }
+  .lede { margin: 18px 0 0; font-size: clamp(18px, 1.6vw, 21px); color: var(--ink-2); max-width: 46ch; }
+  .addr { margin-top: 40px; max-width: 660px; }
+  .addr .stamp { position: absolute; right: -28px; top: -40px; mix-blend-mode: multiply; }
+  .actions { margin-top: auto; padding-top: 48px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 28px; }
+  .actions .btn { min-height: 60px; padding: 0 36px; font-size: 19px; }
+  .trust-confirm { margin-top: 16px; padding: 14px 16px; border: 1px solid var(--rule); border-radius: 6px; max-width: 560px; }
+  .trust-confirm p { margin: 0 0 10px; }
+  .trust-confirm .row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .trust-confirm .btn { min-height: 44px; font-size: 15px; padding: 0 18px; }
+  aside { padding: clamp(28px, 5vw, 64px) clamp(20px, 4vw, 56px); display: flex; flex-direction: column; }
+  .slip { margin-top: 6px; font-size: 18px; }
+  details { margin-top: 18px; font-size: 15px; color: var(--ink-2); }
+  summary { cursor: pointer; text-decoration: underline; text-underline-offset: 4px; width: fit-content; padding: 4px 0; }
+  details ul { margin: 10px 0 0; padding-left: 18px; }
+  details li { margin: 4px 0; }
+  .foot { margin-top: auto; padding-top: 28px; font-size: 14px; color: var(--ink-2); border-top: 1px solid var(--rule); }
+  .foot p { margin: 14px 0 0; }
+  @media (prefers-color-scheme: dark) { .addr .stamp { mix-blend-mode: normal; } }
+  @media (max-width: 900px) {
+    .sheet { grid-template-columns: 1fr; }
+    .main { border-right: 0; border-bottom: 1px solid var(--rule); }
+    .addr { margin-top: 48px; }
+    .addr .stamp { right: -6px; top: -42px; font-size: 32px; }
+    .actions { padding-top: 32px; }
+    .actions .btn { width: 100%; }
+    .actions kbd { display: none; }
+  }
+</style></head>
+<body>
+  <header class="band">
+    <svg class="mark" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+    <span class="band-note" id="note">Stopped before it opened</span>
+  </header>
+  <main class="sheet">
+    <section class="main" aria-labelledby="headline">
+      <h1 class="display" id="headline">This link looks dangerous</h1>
+      <p class="lede" id="lede">LinkGuard thinks this page could harm you, so it didn't open it.</p>
+      <div class="addr">
+        <div class="caps">It really goes to</div>
+        <div class="addr-url" id="url"></div>
+        <div class="addr-said" id="said" hidden></div>
+        <div class="stamp tilt land" aria-hidden="true">Not safe</div>
+      </div>
+      <div class="actions">
+        <button class="btn" id="back" autofocus>Go back to safety <kbd>Enter</kbd></button>
+        <button class="quiet" id="open">Open anyway</button>
+        <button class="quiet" id="trust">I trust this site</button>
+      </div>
+      <div class="trust-confirm" id="trustConfirm" hidden>
+        <p>Always open <b id="trustHost"></b> without warnings? Only do this if you know the site.</p>
+        <div class="row"><button class="btn secondary" id="trustYes">Yes, always allow it</button><button class="quiet" id="trustNo">Cancel</button></div>
+      </div>
+    </section>
+    <aside aria-labelledby="whyHead">
+      <h2 class="caps slip-head" id="whyHead">Why it was stopped</h2>
+      <ul class="slip" id="reasons"></ul>
+      <details id="more" hidden><summary>More details</summary><ul id="allReasons"></ul><p id="score"></p></details>
+      <div class="foot"><p id="privacy">Checked on this device. Nothing about this page was sent anywhere.</p></div>
+    </aside>
+  </main>
+  <script src="analyzer.js"></script>
+  <script src="blocked.js"></script>
+</body></html>

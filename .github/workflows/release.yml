@@ -1,0 +1,46 @@
+# Push a tag like v1.2.0 and this attaches ready-to-install builds to a GitHub Release:
+#   linkguard-chrome.zip    Chrome, Edge, Brave, Opera, Vivaldi (unzip, then Load unpacked)
+#   linkguard-firefox.zip   for addons.mozilla.org review
+#   linkguard-firefox.xpi   signed by Mozilla, installs permanently by opening it in Firefox
+#                           (only when the AMO_JWT_ISSUER / AMO_JWT_SECRET secrets are set)
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    env:
+      # secrets can't be read in `if:`, so expose whether signing is configured as a plain flag.
+      CAN_SIGN: ${{ secrets.AMO_JWT_ISSUER != '' && secrets.AMO_JWT_SECRET != '' }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Tag matches manifest version
+        run: |
+          version=$(node -p "require('./manifest.json').version")
+          [ "v$version" = "$GITHUB_REF_NAME" ] || { echo "Tag $GITHUB_REF_NAME doesn't match manifest version $version"; exit 1; }
+      - run: npm test
+      - run: npm run lint
+      - run: npm run package
+      - name: Sign Firefox build (self-distributed)
+        if: env.CAN_SIGN == 'true'
+        env:
+          WEB_EXT_API_KEY: ${{ secrets.AMO_JWT_ISSUER }}
+          WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
+        run: |
+          npx web-ext sign --source-dir dist/firefox --channel unlisted --artifacts-dir dist/signed
+          mv dist/signed/*.xpi dist/linkguard-firefox.xpi
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip $(ls dist/*.xpi 2>/dev/null) --title "LinkGuard $GITHUB_REF_NAME" --generate-notes

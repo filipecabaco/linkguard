@@ -1,0 +1,53 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "dark-glow",
+        "value": "*",
+        "files": [
+          "welcome.html"
+        ],
+        "createdAt": "2026-10-21T22:26:22.412Z",
+        "reason": "Claude: the only box-shadow ring is the zero-blur double hairline on the danger mark (DESIGN.md stamp double rule), not a glow"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "welcome.html"
+        ],
+        "createdAt": "2026-10-21T22:29:24.830Z",
+        "reason": "Claude: sections have padding-block clamp(24px,5vw,56px); the flagged border-top is the section divider, not flush text"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "options.html"
+        ],
+        "createdAt": "2026-10-21T22:29:26.226Z",
+        "reason": "Claude: sections have padding-block clamp(24px,4vw,40px); border-top is the section divider"
+      },
+      {
+        "rule": "tight-leading",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/*.html"
+        ],
+        "createdAt": "2026-10-21T22:29:27.277Z",
+        "reason": "Claude: resolved decision-round sketches, not shipped UI"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          ".impeccable/mocks/decision/*.html"
+        ],
+        "createdAt": "2026-10-21T22:29:28.318Z",
+        "reason": "Claude: resolved decision-round sketches, not shipped UI"
+      }
+    ]
+  }
+}

@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LinkGuard: stops scam links before they open</title>
+<meta name="description" content="A free browser add-on that marks risky links on every page and stops dangerous sites before they open, with the reasons in plain words.">
+<meta property="og:title" content="LinkGuard: is this link safe?">
+<meta property="og:description" content="Marks risky links and stops dangerous sites before they open. Free, and it works without an account.">
+<meta property="og:image" content="icon-128.png">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --kraft: #B48A5C; --on-kraft: #1C2238; --label: #F6F5F1; --ground: #E9E4DA;
+    --ink: #1C2238; --ink-2: #4A5068; --rule: #1C223833;
+    --stamp: #E2382B; --stamp-text: #C1261B; --stamp-wash: #E2382B1F;
+    --tag: #F2B705; --tag-edge: #8A6500; --ok: #2E6B4A; --link: #1A4FB5;
+    --display: "Archivo", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    --gutter: clamp(16px, 5vw, 72px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --kraft: #4A3826; --on-kraft: #F1E6D6; --label: #1E2129; --ground: #17191F;
+      --ink: #ECEAE4; --ink-2: #A9AEBC; --rule: #ECEAE42E;
+      --stamp: #FF5A4E; --stamp-text: #FF7A70; --stamp-wash: #FF5A4E24;
+      --tag-edge: #F2B705; --ok: #7CC79D; --link: #8AB4F8;
+    }
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--label); color: var(--ink); font: 18px/1.55 var(--body); }
+  ::selection { background: var(--tag); color: #1C2238; }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+  a { color: inherit; text-underline-offset: 4px; }
+  h1, h2, h3 { margin: 0; }
+  .display { font-family: var(--display); font-weight: 800; font-stretch: 72%; letter-spacing: -.015em; line-height: .95; text-wrap: balance; }
+  .caps { font: 700 13px/1.2 var(--display); font-stretch: 88%; letter-spacing: .15em; text-transform: uppercase; color: var(--ink-2); }
+
+  /* Band */
+  .band { background: var(--kraft); color: var(--on-kraft); padding: env(safe-area-inset-top, 0px) var(--gutter) 0; }
+  .band-in { min-height: 68px; display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+  .band :focus-visible { outline-color: var(--on-kraft); }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; font: 800 21px/1 var(--display); font-stretch: 80%; letter-spacing: .05em; text-transform: uppercase; }
+  .brand svg { width: 26px; height: 30px; }
+  .band nav { margin-left: auto; display: flex; gap: clamp(16px, 3vw, 32px); font-weight: 600; font-size: 16px; }
+  .band nav a { text-decoration: none; padding: 8px 0; }
+  .band nav a:hover { text-decoration: underline; }
+
+  /* First viewport */
+  .first { display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, .95fr); min-height: calc(100vh - 68px); }
+  .ask { padding: clamp(40px, 7vw, 88px) clamp(24px, 4vw, 64px) 48px var(--gutter); display: flex; flex-direction: column; }
+  h1 { font-size: clamp(64px, 8.4vw, 124px); }
+  .lede { margin: 24px 0 0; font-size: clamp(19px, 1.6vw, 23px); color: var(--ink-2); max-width: 31ch; }
+  .addr { margin-top: clamp(48px, 6vw, 64px); max-width: 580px; border: 1px solid var(--ink); border-radius: 3px; padding: 16px 20px; position: relative; background: var(--label); }
+  .addr-url { margin-top: 8px; font: 500 clamp(16px, 1.5vw, 19px)/1.4 var(--mono); word-break: break-all; }
+  .addr-url mark { background: var(--stamp-wash); color: var(--stamp-text); font-weight: 700; padding: 0 2px; border-radius: 2px; }
+  .addr-why { margin: 10px 0 0; font-size: 15px; color: var(--ink-2); }
+  .stamp { display: inline-block; border: 5px double var(--stamp); color: var(--stamp-text); background: var(--label); border-radius: 6px;
+    padding: .18em .42em .1em; font: 900 clamp(30px, 3vw, 42px)/1 var(--display); font-stretch: 68%; letter-spacing: .06em; text-transform: uppercase; }
+  .addr .stamp { position: absolute; right: -30px; top: -66px; transform: rotate(-9deg); }
+  .example { margin: 18px 0 0; font-size: 14px; color: var(--ink-2); }
+  .ask .jump { margin-top: auto; padding-top: 40px; }
+
+  /* The question slip */
+  .slip { background: var(--ground); border-left: 1px solid var(--rule); padding: clamp(40px, 6vw, 72px) var(--gutter) 56px clamp(24px, 4vw, 64px); }
+  .slip > .caps { padding-bottom: 16px; border-bottom: 2px solid var(--ink); color: var(--ink); }
+  details { border-bottom: 1px solid var(--rule); }
+  summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 0; font-weight: 650; font-size: 20px; line-height: 1.3; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; font-weight: 400; color: var(--ink-2); font-size: 22px; }
+  details[open] > summary::after { content: "–"; }
+  summary:hover { text-decoration: underline; text-underline-offset: 5px; }
+  .answer { padding: 0 0 22px; color: var(--ink-2); font-size: 17px; }
+  .answer p { margin: 0 0 10px; max-width: 54ch; }
+  .answer b { color: var(--ink); }
+
+  /* Install, the open answer */
+  .tabs { display: flex; flex-wrap: wrap; border: 1px solid var(--ink); border-radius: 8px; overflow: hidden; width: fit-content; margin: 4px 0 18px; }
+  .tabs button { appearance: none; border: 0; border-right: 1px solid var(--ink); background: transparent; color: var(--ink); font: 600 15px/1 var(--body); padding: 11px 15px; cursor: pointer; min-height: 40px; }
+  .tabs button:last-child { border-right: 0; }
+  .tabs button[aria-selected="true"] { background: var(--ink); color: var(--label); }
+  .steps { margin: 0; padding: 0; list-style: none; counter-reset: s; color: var(--ink); }
+  .steps li { counter-increment: s; display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 9px 0; font-size: 17px; line-height: 1.45; }
+  .steps li::before { content: counter(s); font: 900 26px/1 var(--display); font-stretch: 70%; color: var(--ink); padding-top: 1px; }
+  .steps code { font-family: var(--mono); font-size: 15px; background: var(--label); border: 1px solid var(--rule); border-radius: 4px; padding: 1px 6px; }
+  .copy { appearance: none; background: none; border: 0; color: var(--ink-2); font: 500 14px var(--body); text-decoration: underline; text-underline-offset: 3px; cursor: pointer; padding: 2px 4px; }
+  .actions { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 22px; margin-top: 18px; }
+  .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 56px; padding: 0 30px; border-radius: 10px; background: var(--ink); color: var(--label);
+    font: 700 19px/1 var(--body); text-decoration: none; }
+  .btn:hover { filter: brightness(1.15); }
+  .btn svg { width: 18px; height: 18px; }
+  .note { margin: 14px 0 0; font-size: 15px; color: var(--ink-2); max-width: 56ch; }
+
+  /* Sections below */
+  section.more { padding: clamp(56px, 8vw, 104px) var(--gutter); border-top: 1px solid var(--rule); }
+  section.more h2 { font-size: clamp(44px, 5vw, 68px); max-width: 16ch; }
+  section.more > p { margin: 18px 0 0; font-size: 20px; color: var(--ink-2); max-width: 52ch; }
+  .seen { margin-top: 44px; border-top: 2px solid var(--ink); max-width: 1120px; }
+  .seen-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr); gap: clamp(20px, 4vw, 64px); padding: 30px 0; border-bottom: 1px solid var(--rule); align-items: center; }
+  .seen-row h3 { font: 700 21px/1.3 var(--body); }
+  .seen-row p { margin: 6px 0 0; color: var(--ink-2); font-size: 17px; max-width: 46ch; }
+  .demo-link { font-size: 19px; color: var(--link); text-decoration: underline; text-underline-offset: 4px; border-radius: 3px; padding: 0 3px; }
+  .demo-sus { outline: 2px dashed var(--tag-edge); outline-offset: 1px; background: #F2B7052E; text-decoration: underline wavy var(--tag-edge); }
+  .demo-dan { outline: 3px double var(--stamp); outline-offset: 1px; background: var(--stamp-wash); text-decoration: underline wavy var(--stamp); }
+  .m { display: inline-flex; align-items: center; justify-content: center; width: 1.05em; height: 1.05em; margin-right: .3em; border-radius: 3px; vertical-align: -.05em;
+    font: 900 .78em/1 var(--display); font-stretch: 75%; text-decoration: none; }
+  .m.d { background: #C1261B; color: #fff; }
+  .m.s { background: var(--tag); color: #1C2238; border: 1.5px dashed #1C2238; }
+  .mini { border: 1px solid var(--ink); border-radius: 3px; padding: 14px 18px 26px; background: var(--label); max-width: 440px; position: relative; }
+  .mini .stamp { position: absolute; right: -14px; bottom: -18px; transform: rotate(-9deg); font-size: 24px; border-width: 4px; }
+  .mini b { display: block; font: 800 24px/1.05 var(--display); font-stretch: 75%; color: var(--ink); }
+  .mini span { display: block; margin-top: 8px; font: 500 14px/1.4 var(--mono); color: var(--ink-2); word-break: break-all; }
+
+  .privacy { background: var(--ground); }
+  .facts { list-style: none; margin: 40px 0 0; padding: 0; border-top: 2px solid var(--ink); max-width: 880px; }
+  .facts li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; padding: 16px 0; border-bottom: 1px solid var(--rule); font-size: 18px; }
+  .tick { width: 20px; height: 20px; border: 1.5px solid var(--ink); border-radius: 2px; margin-top: 3px; position: relative; }
+  .tick::after { content: ""; position: absolute; left: 4px; top: -6px; width: 8px; height: 18px; border: solid var(--ok); border-width: 0 4px 4px 0; transform: rotate(40deg); }
+  .facts small { display: block; color: var(--ink-2); font-size: 16px; margin-top: 2px; }
+
+  footer { background: var(--kraft); color: var(--on-kraft); padding: 28px var(--gutter) calc(28px + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; font-size: 16px; }
+  footer :focus-visible { outline-color: var(--on-kraft); }
+  footer .brand { font-size: 17px; }
+  footer p { margin: 0; }
+  footer .push { margin-left: auto; }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .addr .stamp { animation: land 260ms cubic-bezier(.16, 1, .3, 1) both 350ms; }
+    @keyframes land { from { opacity: 0; transform: rotate(-9deg) scale(1.2); } to { opacity: 1; transform: rotate(-9deg) scale(1); } }
+  }
+  @media (max-width: 960px) {
+    .first { grid-template-columns: 1fr; min-height: 0; }
+    .ask { padding-right: var(--gutter); }
+    .ask .jump { display: none; }
+    .slip { border-left: 0; border-top: 1px solid var(--rule); }
+    .seen-row { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 560px) {
+    .band nav a:not(.nav-install) { display: none; }
+    .addr { margin-bottom: 18px; padding-bottom: 40px; }
+    .addr .stamp { top: auto; bottom: -24px; right: -6px; }
+    .tabs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--ink); width: 100%; }
+    .tabs button { border-right: 0; background: var(--ground); }
+    .tabs button:last-child { grid-column: span 2; }
+    .btn { width: 100%; }
+    summary { font-size: 19px; }
+  }
+</style></head>
+<body>
+  <header class="band">
+    <div class="band-in">
+      <a class="brand" href="#top" aria-label="LinkGuard home">
+        <svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+        LinkGuard
+      </a>
+      <nav aria-label="Page">
+        <a class="nav-install" href="#install">Install</a>
+        <a href="#privacy">Privacy</a>
+        <a href="https://github.com/filipecabaco/linkguard">GitHub</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="first">
+      <section class="ask" aria-labelledby="h1">
+        <h1 class="display" id="h1">Is this link safe?</h1>
+        <p class="lede">LinkGuard checks every link before you open it, and stops the ones that are trying to trick you.</p>
+        <div class="addr" role="img" aria-label="Example: a link showing www.paypal.com really goes to paypa1-account-verify.xyz, stamped Not safe">
+          <div class="caps">The link said www.paypal.com. It really goes to</div>
+          <div class="addr-url">http://<mark>paypa1-account-verify.xyz</mark>/login</div>
+          <p class="addr-why">PayPal spelled with a number 1 · asks for your password on an unsafe page</p>
+          <div class="stamp" aria-hidden="true">Not safe</div>
+        </div>
+        <p class="example">An example of what LinkGuard shows. The address is made up.</p>
+        <p class="jump"><a href="#seen">See what LinkGuard looks like ↓</a></p>
+      </section>
+
+      <aside class="slip" aria-labelledby="qs">
+        <h2 class="caps" id="qs">You might be wondering</h2>
+
+        <details>
+          <summary>What does it do?</summary>
+          <div class="answer">
+            <p>It looks at every link on the pages you visit. Risky ones get marked: <b>yellow</b> means look twice, <b>red</b> means not safe. Click one and LinkGuard tells you why before anything opens.</p>
+            <p>If you type or open a dangerous address, you get a full-page stop instead of the site. You can always go back, or open it anyway.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Does it read my emails?</summary>
+          <div class="answer">
+            <p>No. It only looks at the addresses of links, and it does that inside your browser. Nothing about the pages you visit is sent anywhere.</p>
+            <p>The one exception is optional: if you turn on smart checks, the links being checked are sent to an AI service. <a href="#privacy">More on privacy</a>.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Is it free?</summary>
+          <div class="answer">
+            <p>Yes, and you don't need an account. Optional smart checks use your own TypeSafe account, which charges a tiny amount per check.</p>
+          </div>
+        </details>
+
+        <details open id="install">
+          <summary>How do I install it?</summary>
+          <div class="answer">
+            <p id="detected">Pick your browser. It takes about a minute.</p>
+            <div class="tabs" role="tablist" aria-label="Browser">
+              <button role="tab" id="t-chrome" aria-controls="p-chrome" aria-selected="true">Chrome</button>
+              <button role="tab" id="t-edge" aria-controls="p-edge" aria-selected="false">Edge</button>
+              <button role="tab" id="t-brave" aria-controls="p-brave" aria-selected="false">Brave · Opera</button>
+              <button role="tab" id="t-firefox" aria-controls="p-firefox" aria-selected="false">Firefox</button>
+              <button role="tab" id="t-safari" aria-controls="p-safari" aria-selected="false">Safari</button>
+            </div>
+
+            <div role="tabpanel" id="p-chrome" aria-labelledby="t-chrome" data-zip="chrome">
+              <ol class="steps">
+                <li><span>Download LinkGuard, then double-click the file to unzip it. You get a folder.</span></li>
+                <li><span>Open <code>chrome://extensions</code> in a new tab <button class="copy" data-copy="chrome://extensions">Copy</button></span></li>
+                <li><span>Turn on <b>Developer mode</b> at the top right.</span></li>
+                <li><span>Click <b>Load unpacked</b> and choose the folder. LinkGuard opens a welcome page when it's ready.</span></li>
+              </ol>
+            </div>
+            <div role="tabpanel" id="p-edge" aria-labelledby="t-edge" data-zip="chrome" hidden>
+              <ol class="steps">
+                <li><span>Download LinkGuard, then double-click the file to unzip it. You get a folder.</span></li>
+                <li><span>Open <code>edge://extensions</code> in a new tab <button class="copy" data-copy="edge://extensions">Copy</button></span></li>
+                <li><span>Turn on <b>Developer mode</b> on the left.</span></li>
+                <li><span>Click <b>Load unpacked</b> and choose the folder. LinkGuard opens a welcome page when it's ready.</span></li>
+              </ol>
+            </div>
+            <div role="tabpanel" id="p-brave" aria-labelledby="t-brave" data-zip="chrome" hidden>
+              <ol class="steps">
+                <li><span>Download LinkGuard, then double-click the file to unzip it. You get a folder.</span></li>
+                <li><span>Open <code>brave://extensions</code> (or <code>opera://extensions</code>) in a new tab <button class="copy" data-copy="brave://extensions">Copy</button></span></li>
+                <li><span>Turn on <b>Developer mode</b>.</span></li>
+                <li><span>Click <b>Load unpacked</b> and choose the folder. LinkGuard opens a welcome page when it's ready.</span></li>
+              </ol>
+            </div>
+            <div role="tabpanel" id="p-firefox" aria-labelledby="t-firefox" data-zip="firefox" hidden>
+              <ol class="steps">
+                <li><span>Click Download. If Firefox asks whether to allow the install, choose <b>Continue to installation</b>, then <b>Add</b>.</span></li>
+                <li><span>If it only saved the file: open the menu (≡), then <b>Add-ons and themes</b>, the gear, <b>Install Add-on From File</b>, and pick the file.</span></li>
+                <li><span>When LinkGuard asks to check websites, choose <b>Allow</b>.</span></li>
+              </ol>
+            </div>
+            <div role="tabpanel" id="p-safari" aria-labelledby="t-safari" data-zip="" hidden>
+              <p>Safari doesn't have an easy install yet. If you're comfortable with Xcode on a Mac, the <a href="https://github.com/filipecabaco/linkguard#build-and-share">instructions on GitHub</a> show how to build it.</p>
+            </div>
+
+            <div class="actions" id="dlRow">
+              <a class="btn" id="download" href="https://github.com/filipecabaco/linkguard/releases/latest/download/linkguard-chrome.zip">
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 17h12"/></svg>
+                <span id="dlText">Download for Chrome</span>
+              </a>
+            </div>
+            <p class="note" id="dlNote">Chrome may remind you that the add-on came from outside its store. That's expected. New versions don't install themselves; check back here now and then.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>What if it warns about a site I trust?</summary>
+          <div class="answer">
+            <p>Press <b>I trust this site</b> on the warning and LinkGuard won't warn about it again. You can undo that in LinkGuard's settings.</p>
+          </div>
+        </details>
+
+        <details>
+          <summary>Does it work on my phone?</summary>
+          <div class="answer">
+            <p>Not yet. For now LinkGuard is for computers: Chrome, Edge, Brave, Opera and Firefox.</p>
+          </div>
+        </details>
+      </aside>
+    </div>
+
+    <section class="more" id="seen" aria-labelledby="seenH">
+      <h2 class="display" id="seenH">What you'll see</h2>
+      <p>LinkGuard stays out of the way until a link looks wrong. Then it shows up in one of three ways.</p>
+      <div class="seen">
+        <div class="seen-row">
+          <div><h3>A yellow mark: look twice</h3><p>Something about the link is odd, like a short link that hides where it goes. LinkGuard asks before opening it.</p></div>
+          <div><span class="demo-link demo-sus"><span class="m s" aria-hidden="true">?</span>bit.ly/free-gift-card</span></div>
+        </div>
+        <div class="seen-row">
+          <div><h3>A red mark: not safe</h3><p>The link is pretending to be somewhere it isn't. Clicking it shows you the real address and the reasons first.</p></div>
+          <div><span class="demo-link demo-dan"><span class="m d" aria-hidden="true">!</span>www.paypal.com</span></div>
+        </div>
+        <div class="seen-row">
+          <div><h3>A full-page stop</h3><p>If you type, paste or open a dangerous address, the site doesn't open. You get this instead, with one big button to go back.</p></div>
+          <div class="mini"><b>This link is pretending to be PayPal</b><span>http://paypa1-account-verify.xyz/login</span><div class="stamp" aria-hidden="true">Not safe</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="more privacy" id="privacy" aria-labelledby="privH">
+      <h2 class="display" id="privH">What stays private</h2>
+      <ul class="facts">
+        <li><span class="tick" aria-hidden="true"></span><div>Links are checked on your computer.<small>The built-in checks never send anything anywhere.</small></div></li>
+        <li><span class="tick" aria-hidden="true"></span><div>No account, no tracking, no ads.<small>LinkGuard has no servers of its own and collects nothing about you.</small></div></li>
+        <li><span class="tick" aria-hidden="true"></span><div>Smart checks are off unless you turn them on.<small>When on, only the link's address, its words and the website's name go to TypeSafe to judge the link.</small></div></li>
+      </ul>
+      <p><a href="https://github.com/filipecabaco/linkguard/blob/main/PRIVACY.md">Read the full privacy policy</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <a class="brand" href="#top">
+      <svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+      LinkGuard
+    </a>
+    <p>Open source. Developers: build, tests and source are <a href="https://github.com/filipecabaco/linkguard">on GitHub</a>.</p>
+    <a class="push" href="https://github.com/filipecabaco/linkguard/releases">All versions</a>
+  </footer>
+
+  <script>
+    // Picks the visitor's browser, wires the browser tabs and the Download button, and copies settings addresses
+    // (web pages can't link to chrome:// pages, so people paste them into a new tab).
+    const RELEASE = "https://github.com/filipecabaco/linkguard/releases/latest/download/";
+    const FILES = { chrome: "linkguard-chrome.zip", firefox: "linkguard-firefox.xpi" };
+    const NAMES = { chrome: "Chrome", edge: "Edge", brave: "Brave", firefox: "Firefox", safari: "Safari" };
+    const NOTES = {
+      chrome: "Chrome may remind you that the add-on came from outside its store. That's expected. New versions don't install themselves; check back here now and then.",
+      edge: "Edge may remind you that the add-on came from outside its store. That's expected. New versions don't install themselves; check back here now and then.",
+      brave: "Your browser may remind you that the add-on came from outside its store. That's expected. New versions don't install themselves; check back here now and then.",
+      firefox: "This version is signed by Mozilla, so it stays installed after Firefox restarts.",
+      safari: ""
+    };
+    const tabs = [...document.querySelectorAll('[role="tab"]')];
+
+    function select(name) {
+      for (const t of tabs) {
+        const on = t.id === "t-" + name;
+        t.setAttribute("aria-selected", on);
+        t.tabIndex = on ? 0 : -1;
+        document.getElementById(t.getAttribute("aria-controls")).hidden = !on;
+      }
+      const zip = document.getElementById("p-" + name).dataset.zip;
+      document.getElementById("dlRow").hidden = !zip;
+      if (zip) {
+        document.getElementById("download").href = RELEASE + FILES[zip];
+        document.getElementById("dlText").textContent = "Download for " + (name === "brave" ? "Brave or Opera" : NAMES[name]);
+      }
+      document.getElementById("dlNote").textContent = NOTES[name];
+      document.getElementById("dlNote").hidden = !NOTES[name];
+    }
+
+    function detect() {
+      const ua = navigator.userAgent;
+      if (/Android|iPhone|iPad/i.test(ua)) return { name: "chrome", phone: true };
+      if (/Firefox\//.test(ua)) return { name: "firefox" };
+      if (/Edg\//.test(ua)) return { name: "edge" };
+      if (navigator.brave || /OPR\/|Vivaldi/.test(ua)) return { name: "brave" };
+      if (/Chrome\//.test(ua)) return { name: "chrome" };
+      if (/Safari\//.test(ua)) return { name: "safari" };
+      return { name: "chrome", unknown: true };
+    }
+
+    const seen = detect();
+    select(seen.name);
+    document.getElementById("detected").textContent = seen.phone
+      ? "LinkGuard is for computers for now. Open this page on your computer to install it."
+      : seen.unknown ? "Pick your browser. It takes about a minute."
+      : `Looks like you're using ${NAMES[seen.name]}. It takes about a minute.`;
+
+    tabs.forEach((t, i) => {
+      t.addEventListener("click", () => select(t.id.slice(2)));
+      t.addEventListener("keydown", e => {
+        const step = e.key === "ArrowRight" ? 1 : e.key === "ArrowLeft" ? -1 : 0;
+        if (!step) return;
+        const next = tabs[(i + step + tabs.length) % tabs.length];
+        next.focus(); select(next.id.slice(2));
+      });
+    });
+
+    document.querySelectorAll(".copy").forEach(b => b.addEventListener("click", async () => {
+      try { await navigator.clipboard.writeText(b.dataset.copy); b.textContent = "Copied"; }
+      catch { b.textContent = "Select and copy it"; }
+      setTimeout(() => { b.textContent = "Copy"; }, 1800);
+    }));
+  </script>
+</body></html>

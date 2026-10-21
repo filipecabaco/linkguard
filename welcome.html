@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Welcome to LinkGuard</title>
+<link rel="stylesheet" href="ui.css">
+<style>
+  .sheet { max-width: 1040px; margin: 0 auto clamp(16px, 4vw, 56px); background: var(--label); box-shadow: var(--shadow); border-radius: 0 0 4px 4px; }
+  .wrap { padding-inline: clamp(16px, 3vw, 0px); }
+  section { padding: clamp(28px, 5vw, 56px) clamp(20px, 5vw, 64px); }
+  section + section { border-top: 1px solid var(--rule); }
+  .access { background: var(--tag); color: #1C2238; }
+  .access p { margin: 10px 0 18px; font-size: 18px; max-width: 56ch; }
+  .access .btn { background: #1C2238; color: #F6F5F1; }
+  .access .status { color: #1C2238; }
+  .hero { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+  h1 { font-size: clamp(44px, 6vw, 72px); }
+  h2 { font-size: clamp(30px, 3.4vw, 40px); }
+  .lede { margin: 16px 0 0; font-size: 19px; color: var(--ink-2); max-width: 40ch; }
+  .specimen { border: 1px solid var(--ink); border-radius: 3px; padding: 6px 20px 10px; }
+  .spec { display: grid; grid-template-columns: 1fr; gap: 6px; padding: 16px 0; border-bottom: 1px solid var(--rule); }
+  .spec:last-child { border-bottom: 0; }
+  .spec .demo { font-size: 17px; }
+  .spec .demo a { color: #1a4fb5; pointer-events: none; }
+  .spec p { margin: 0; color: var(--ink-2); font-size: 15px; }
+  @media (prefers-color-scheme: dark) { .spec .demo a { color: #8AB4F8; } }
+  .demo-sus { outline: 2px dashed var(--tag-edge); outline-offset: 1px; background: #F2B7052E; border-radius: 3px; text-decoration: underline wavy var(--tag-edge); }
+  .demo-dan { outline: 3px double var(--stamp); outline-offset: 1px; background: var(--stamp-wash); border-radius: 3px; text-decoration: underline wavy var(--stamp); }
+  .m { display: inline-flex; align-items: center; justify-content: center; width: 1.05em; height: 1.05em; margin-right: .3em; border-radius: 3px; vertical-align: .05em;
+    font: 900 .78em/1 var(--display); font-stretch: 75%; }
+  .m.d { background: #C1261B; color: #fff; box-shadow: 0 0 0 1px var(--label), 0 0 0 2px #C1261B; }
+  .m.s { background: var(--tag); color: #1C2238; border: 1.5px dashed #1C2238; }
+  .pin { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(20px, 4vw, 56px); align-items: center; }
+  .pin p { margin: 0; font-size: 18px; }
+  .smart-head { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(20px, 4vw, 56px); }
+  .smart-head p { margin: 0 0 12px; color: var(--ink-2); }
+  .smart-head p:first-child { color: var(--ink); font-size: 18px; }
+  .steps { list-style: none; margin: 32px 0 0; padding: 0; border-top: 2px solid var(--ink); }
+  .step { display: grid; grid-template-columns: 24px 1fr; gap: 16px; padding: 22px 0; border-bottom: 1px solid var(--rule); }
+  .step h3 { margin: 0; font: 700 19px/1.4 var(--body); }
+  .step p { margin: 6px 0 14px; color: var(--ink-2); max-width: 62ch; }
+  .step.done .box::after { content: ""; position: absolute; left: 4px; top: -6px; width: 8px; height: 18px; border: solid var(--ok); border-width: 0 4px 4px 0; transform: rotate(40deg); }
+  .step.waiting .box { opacity: .5; }
+  .step.waiting .btn, .step.waiting input { pointer-events: none; opacity: .45; }
+  .row { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; }
+  .code { max-width: 420px; font-family: var(--mono); }
+  .status { margin: 14px 0 0; font-weight: 600; min-height: 1.5em; }
+  label { font-weight: 600; font-size: 15px; display: block; margin-bottom: 6px; }
+  .end { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }
+  .end p { margin: 0; font-size: 18px; }
+  @media (max-width: 800px) {
+    .hero, .pin, .smart-head { grid-template-columns: 1fr; }
+    .btn { width: 100%; }
+    .row .quiet { width: 100%; text-align: left; }
+  }
+</style></head>
+<body>
+  <header class="band">
+    <svg class="mark" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+  </header>
+  <div class="wrap"><main class="sheet">
+    <section class="access" id="access" hidden>
+      <h2 class="display">One more step: let LinkGuard see websites</h2>
+      <p>Your browser needs your OK before LinkGuard can check links. Press the button, then choose <b>Allow</b>.</p>
+      <div class="row"><button class="btn" id="allowSites">Let LinkGuard check websites</button></div>
+      <p class="status" id="accessStatus" role="status" aria-live="polite"></p>
+    </section>
+    <section class="hero">
+      <div>
+        <h1 class="display">LinkGuard is on.</h1>
+        <p class="lede">It checks every link you see and stops the dangerous ones before they open. There's nothing you need to set up.</p>
+      </div>
+      <div class="specimen" aria-label="What LinkGuard's warnings look like">
+        <div class="spec">
+          <div class="demo"><a class="demo-sus" href="#" tabindex="-1"><span class="m s" aria-hidden="true">?</span>bit.ly/free-gift-card</a></div>
+          <p><b>Yellow, dashed:</b> look twice. LinkGuard asks before opening it.</p>
+        </div>
+        <div class="spec">
+          <div class="demo"><a class="demo-dan" href="#" tabindex="-1"><span class="m d" aria-hidden="true">!</span>www.paypal.com</a></div>
+          <p><b>Red, double line:</b> LinkGuard stops you and explains why.</p>
+        </div>
+        <div class="spec">
+          <div class="demo"><span class="stamp sm">Not safe</span></div>
+          <p><b>Typed or opened a dangerous address?</b> You get a full-page stop instead of the page.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="pin">
+      <h2 class="display">Keep it in sight</h2>
+      <p id="pinHow">Pin LinkGuard to your toolbar so you can see how many risky links a page has.</p>
+    </section>
+
+    <section id="smart">
+      <div class="smart-head">
+        <h2 class="display">Smarter checks <span style="color:var(--ink-2)">(optional)</span></h2>
+        <div>
+          <p>Turn on an AI check called Jev for links that are new or tricky. It catches scams the built-in checks can miss.</p>
+          <p>When it's on, LinkGuard sends the link's address, its words and the name of the website you're on to Jev, made by TypeSafe. Nothing else from the page is sent, and it's only used to judge the link.</p>
+          <p>You pay TypeSafe directly for what you use. At their listed price, $1 covers tens of thousands of checks.</p>
+        </div>
+      </div>
+
+      <ol class="steps" id="steps">
+        <li class="step" id="s1">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>Open the TypeSafe console</h3>
+            <p>It opens in a new tab. Sign in to your TypeSafe account. TypeSafe is in early access, so if you don't have an account yet, request one on their website and come back once you're in.</p>
+            <div class="row">
+              <a class="btn" id="openConsole" href="https://console.typesafe.ai/keys" target="_blank" rel="noopener">Open TypeSafe console</a>
+              <a class="quiet" href="https://typesafe.ai" target="_blank" rel="noopener">Request access</a>
+            </div>
+          </div>
+        </li>
+        <li class="step" id="s2">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>Create a key and copy it</h3>
+            <p>On the API keys page, create a new key. Name it <b>LinkGuard</b> so you can recognise it later. Copy the whole key; it starts with <code>apikey_</code>.</p>
+          </div>
+        </li>
+        <li class="step" id="s3">
+          <span class="box" aria-hidden="true"></span>
+          <div>
+            <h3>Paste it here</h3>
+            <p>LinkGuard tries one check straight away to make sure the key works. The key stays in this browser.</p>
+            <div class="row">
+              <label class="visually-hidden" for="key">TypeSafe key</label>
+              <input type="password" class="code" id="key" autocomplete="off" spellcheck="false" placeholder="apikey_…">
+              <button class="btn" id="saveKey">Turn on smart checks</button>
+            </div>
+            <p class="status" id="status" role="status" aria-live="polite"></p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
+    <section class="end">
+      <p id="endText">That's it. You can close this tab; LinkGuard keeps working.</p>
+      <a class="quiet" href="options.html">Open settings</a>
+    </section>
+  </main></div>
+  <script src="connect.js"></script>
+  <script src="welcome.js"></script>
+</body></html>

@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>LinkGuard settings</title>
+<link rel="stylesheet" href="ui.css">
+<style>
+  .sheet { max-width: 760px; margin: 0 auto clamp(16px, 4vw, 56px); background: var(--label); box-shadow: var(--shadow); border-radius: 0 0 4px 4px; }
+  .wrap { padding-inline: clamp(16px, 3vw, 0px); }
+  section { padding: clamp(24px, 4vw, 40px) clamp(20px, 5vw, 48px); }
+  section + section { border-top: 1px solid var(--rule); }
+  h1 { font-size: clamp(36px, 5vw, 48px); }
+  h2 { font-size: 28px; margin-bottom: 4px; }
+  .hint { margin: 4px 0 0; color: var(--ink-2); font-size: 15px; max-width: 62ch; }
+  .opt { display: flex; gap: 12px; align-items: flex-start; padding: 14px 0; border-bottom: 1px solid var(--rule); cursor: pointer; }
+  .opt:last-child { border-bottom: 0; }
+  .opt input { margin-top: 3px; }
+  .opt b { display: block; font-weight: 600; }
+  .opt span { color: var(--ink-2); font-size: 14.5px; }
+  fieldset { border: 0; margin: 22px 0 0; padding: 0; }
+  legend { font-weight: 700; padding: 0; margin-bottom: 4px; font-size: 16px; }
+  .trusted { list-style: none; margin: 14px 0 0; padding: 0; border-top: 1px solid var(--rule); }
+  .trusted li { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--rule); font-family: var(--mono); font-size: 15px; }
+  .trusted .empty { font-family: var(--body); color: var(--ink-2); }
+  .add { display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .add input { flex: 1 1 220px; font-family: var(--mono); }
+  .add .btn { min-height: 44px; }
+  .smart-state { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin-top: 16px; }
+  .pill { font: 700 12px/1 var(--display); font-stretch: 88%; letter-spacing: .12em; text-transform: uppercase; padding: 6px 10px; border-radius: 4px; border: 1.5px solid currentColor; }
+  .pill.on { color: var(--ok); } .pill.off { color: var(--ink-2); }
+  #lastErr { margin: 10px 0 0; font-size: 14px; }
+  details.adv > summary { cursor: pointer; font: 800 28px/1.1 var(--display); font-stretch: 75%; list-style: none; display: flex; align-items: center; gap: 10px; }
+  details.adv > summary::-webkit-details-marker { display: none; }
+  details.adv > summary::after { content: "+"; font-family: var(--body); font-weight: 400; color: var(--ink-2); }
+  details.adv[open] > summary::after { content: "–"; }
+  .field { margin-top: 18px; }
+  .field label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 15px; }
+  .field small { display: block; color: var(--ink-2); margin-top: 6px; font-size: 14px; }
+  .keyrow { display: flex; gap: 8px; } .keyrow input { flex: 1; } .keyrow .btn { min-height: 44px; padding: 0 16px; font-size: 15px; }
+  h3 { margin: 32px 0 0; font-size: 18px; }
+  .toast { position: fixed; left: 50%; bottom: calc(24px + env(safe-area-inset-bottom, 0px)); transform: translateX(-50%); background: var(--ink); color: var(--label);
+    padding: 10px 18px; border-radius: 8px; font-weight: 600; font-size: 15px; opacity: 0; transition: opacity 160ms ease-out; pointer-events: none; }
+  .toast.show { opacity: 1; }
+</style></head>
+<body>
+  <header class="band">
+    <svg class="mark" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+    <span class="band-note">Settings save as you change them</span>
+  </header>
+  <div class="wrap"><main class="sheet">
+    <section>
+      <h1 class="display">Settings</h1>
+      <label class="opt"><input type="checkbox" id="enabled"><div><b>LinkGuard is on</b><span>Check links on every page.</span></div></label>
+      <label class="opt"><input type="checkbox" id="blockNavigation"><div><b>Stop dangerous pages before they open</b><span>Also covers addresses you type, bookmarks and links from other apps.</span></div></label>
+
+      <fieldset>
+        <legend>When a link looks risky</legend>
+        <label class="opt"><input type="radio" name="mode" value="flag"><div><b>Mark it and ask before opening</b><span>For both "look twice" and "not safe" links. Recommended.</span></div></label>
+        <label class="opt"><input type="radio" name="mode" value="flag-lite"><div><b>Mark it, only ask for "not safe" links</b><span>Fewer interruptions.</span></div></label>
+        <label class="opt"><input type="radio" name="mode" value="disable"><div><b>Mark it and never open "not safe" links</b><span>No "Open anyway". Good for a child's or a parent's computer.</span></div></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>How careful should LinkGuard be?</legend>
+        <label class="opt"><input type="radio" name="threshold" value="20"><div><b>Extra careful</b><span>Marks more links. Expect a few false alarms.</span></div></label>
+        <label class="opt"><input type="radio" name="threshold" value="30"><div><b>Balanced</b><span>Recommended.</span></div></label>
+        <label class="opt"><input type="radio" name="threshold" value="45"><div><b>Relaxed</b><span>Marks only clearer cases.</span></div></label>
+      </fieldset>
+    </section>
+
+    <section>
+      <h2 class="display">Trusted sites</h2>
+      <p class="hint">LinkGuard won't warn about links to these sites, or check pages on them.</p>
+      <ul class="trusted" id="trusted"></ul>
+      <form class="add" id="addForm">
+        <label class="visually-hidden" for="addSite">Site to trust</label>
+        <input type="text" id="addSite" placeholder="example.com" autocomplete="off" spellcheck="false">
+        <button class="btn secondary" type="submit">Trust site</button>
+      </form>
+    </section>
+
+    <section id="smart">
+      <h2 class="display">Smart checks</h2>
+      <p class="hint">An AI check (Jev by TypeSafe) for links that are new or tricky. When on, LinkGuard sends a link's address, its words and the current site's name. Nothing else from the page is sent.</p>
+      <div class="smart-state">
+        <span class="pill off" id="smartPill">Off</span>
+        <a class="btn" id="setup" href="welcome.html#smart">Set up smart checks</a>
+        <button class="btn secondary" id="testJev" hidden>Check connection</button>
+        <button class="quiet" id="disconnect" hidden>Disconnect</button>
+      </div>
+      <p class="status" id="testOut" role="status" aria-live="polite"></p>
+      <p id="lastErr" class="err-text"></p>
+    </section>
+
+    <section>
+      <details class="adv" id="advanced">
+        <summary>Advanced</summary>
+
+        <h3>Smart checks</h3>
+        <label class="opt"><input type="checkbox" id="useJev"><div><b>Use smart checks</b><span>Needs a connected account.</span></div></label>
+        <div class="field"><label for="jevProvider">Service</label>
+          <select id="jevProvider"><option value="typesafe">TypeSafe</option><option value="custom">Custom endpoint (gateway / proxy)</option></select></div>
+        <div class="field" id="customRow" hidden><label for="jevCustomUrl">Endpoint URL</label>
+          <input type="text" id="jevCustomUrl" placeholder="https://your-gateway.example.com/v1/systemone" spellcheck="false"></div>
+        <div class="field"><label for="jevKey">Key</label>
+          <div class="keyrow"><input type="password" id="jevKey" autocomplete="off" spellcheck="false" placeholder="apikey_…"><button class="btn secondary" id="toggleKey" type="button">Show</button></div></div>
+        <div class="field"><label for="jevModel">Model</label>
+          <input type="text" id="jevModel" placeholder="Default: jev-1.14.0" spellcheck="false">
+          <small>Leave empty for the pinned default, so results stay consistent.</small></div>
+        <div class="field"><label for="jevScope">Which links to check</label>
+          <select id="jevScope">
+            <option value="signals">Only links the built-in checks found something odd about</option>
+            <option value="external">Links to other sites, plus anything odd (recommended)</option>
+            <option value="all">Every link on the page</option>
+          </select></div>
+        <div class="field"><label for="jevMaxPerPage">Most checks per page</label>
+          <input type="number" id="jevMaxPerPage" min="1" max="2000" style="max-width:160px"></div>
+        <label class="opt"><input type="checkbox" id="jevCanClear"><div><b>Let smart checks remove mild warnings</b><span>Only when it's confident they're false alarms. Never removes "not safe".</span></div></label>
+
+        <h3>Google Safe Browsing</h3>
+        <label class="opt"><input type="checkbox" id="useSafeBrowsing"><div><b>Also check links with Google Safe Browsing</b><span>Sends link addresses to Google. Needs a free API key from Google Cloud Console.</span></div></label>
+        <div class="field"><label for="sbKey">Safe Browsing key</label>
+          <input type="password" id="sbKey" autocomplete="off" spellcheck="false"></div>
+      </details>
+    </section>
+  </main></div>
+  <div class="toast" id="toast" role="status" aria-live="polite">Saved</div>
+  <script src="analyzer.js"></script>
+  <script src="connect.js"></script>
+  <script src="options.js"></script>
+</body></html>

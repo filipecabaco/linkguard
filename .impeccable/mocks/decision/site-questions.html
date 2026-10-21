@@ -1,0 +1,68 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Questions first — site sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root { --kraft:#B48A5C; --label:#F6F5F1; --ground:#E9E4DA; --ink:#1C2238; --ink-2:#4A5068; --rule:#1C223833; --stamp:#E2382B; --stamp-text:#C1261B; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { width:1440px; height:900px; overflow:hidden; }
+  body { background:var(--label); color:var(--ink); font:18px/1.55 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .band { height:68px; background:var(--kraft); display:flex; align-items:center; gap:12px; padding:0 72px; }
+  .brand { font:800 21px/1 Archivo; font-stretch:80%; letter-spacing:.05em; text-transform:uppercase; }
+  nav { margin-left:auto; display:flex; gap:32px; font-weight:600; font-size:16px; }
+  main { display:grid; grid-template-columns: 1.05fr .95fr; height:832px; }
+  .q { padding:72px 64px 0 72px; position:relative; }
+  h1 { font:800 112px/.95 Archivo; font-stretch:72%; letter-spacing:-.015em; }
+  .lede { margin-top:22px; font-size:22px; color:var(--ink-2); max-width:30ch; }
+  .addr { margin-top:44px; border:1px solid var(--ink); border-radius:3px; padding:16px 20px; width:560px; position:relative; background:var(--label); }
+  .k { font:700 12px/1 Archivo; font-stretch:88%; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+  .u { margin-top:8px; font:500 19px/1.4 ui-monospace,Menlo,monospace; }
+  .u mark { background:#E2382B1F; color:var(--stamp-text); font-weight:700; }
+  .said { margin-top:8px; font-size:15px; color:var(--ink-2); }
+  .stamp { position:absolute; right:-34px; top:-38px; transform:rotate(-9deg); border:5px double var(--stamp); color:var(--stamp-text); background:var(--label);
+    padding:8px 16px 6px; border-radius:6px; font:900 40px/1 Archivo; font-stretch:68%; letter-spacing:.06em; text-transform:uppercase; }
+  .eg { position:absolute; left:72px; bottom:40px; font-size:14px; color:var(--ink-2); }
+  aside { background:var(--ground); border-left:1px solid var(--rule); padding:64px 72px 0 64px; }
+  .h { font:700 14px/1 Archivo; font-stretch:88%; letter-spacing:.16em; text-transform:uppercase; padding-bottom:16px; border-bottom:2px solid var(--ink); }
+  details, .row { border-bottom:1px solid var(--rule); padding:18px 0; }
+  .row { display:flex; justify-content:space-between; font-weight:650; font-size:20px; }
+  .row span { color:var(--ink-2); font-weight:400; }
+  .open h3 { font-size:20px; font-weight:650; display:flex; justify-content:space-between; }
+  .open p { margin-top:8px; color:var(--ink-2); font-size:17px; }
+  .dl { margin-top:18px; display:flex; align-items:center; gap:20px; }
+  .btn { background:var(--ink); color:var(--label); border-radius:10px; padding:18px 30px; font-weight:700; font-size:19px; }
+  .quiet { color:var(--ink-2); text-decoration:underline; text-underline-offset:4px; font-size:16px; }
+  ol { margin:16px 0 0; padding-left:22px; color:var(--ink); font-size:16px; } ol li { margin:4px 0; }
+</style></head>
+<body>
+  <header class="band">
+    <svg width="26" height="30" viewBox="0 0 30 34" fill="none" stroke="#1C2238" stroke-width="2.5"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+    <nav><span>Install</span><span>Privacy</span><span>GitHub</span></nav>
+  </header>
+  <main>
+    <section class="q">
+      <h1>Is this link safe?</h1>
+      <p class="lede">LinkGuard checks every link before you open it, and stops the ones that are trying to trick you.</p>
+      <div class="addr">
+        <div class="k">The link said www.paypal.com. It really goes to</div>
+        <div class="u">http://<mark>paypa1-account-verify.xyz</mark>/login</div>
+        <div class="said">PayPal spelled with a number 1 · asks for your password</div>
+        <div class="stamp">Not safe</div>
+      </div>
+      <p class="eg">Example of what LinkGuard shows. The address is made up.</p>
+    </section>
+    <aside>
+      <div class="h">You might be wondering</div>
+      <div class="row">What does it do? <span>+</span></div>
+      <div class="row">Does it read my emails? <span>+</span></div>
+      <div class="row">Is it free? <span>+</span></div>
+      <div class="open" style="padding:18px 0;border-bottom:1px solid var(--rule)">
+        <h3>How do I install it? <span style="color:var(--ink-2);font-weight:400">–</span></h3>
+        <p>We spotted Chrome. It takes about a minute.</p>
+        <ol><li>Download LinkGuard and unzip it</li><li>Open chrome://extensions and turn on Developer mode</li><li>Click Load unpacked and pick the folder</li></ol>
+        <div class="dl"><span class="btn">Download for Chrome</span><span class="quiet">Other browsers</span></div>
+      </div>
+      <div class="row">What if it warns about a site I trust? <span>+</span></div>
+    </aside>
+  </main>
+</body></html>

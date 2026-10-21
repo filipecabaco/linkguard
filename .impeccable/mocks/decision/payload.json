@@ -1,0 +1,120 @@
+{
+  "title": "Choose LinkGuard's visual world",
+  "question": "The roll assigned Return to Sender. Keep it, take the alternate, or re-roll. Sketches show the new full-page block screen.",
+  "options": [
+    {
+      "id": "assigned",
+      "kind": "assigned",
+      "label": "Return to Sender",
+      "kicker": "THE ROLL",
+      "lineage": "Post office return slips, franking stamps and parcel address labels",
+      "thesis": "A link is an address; LinkGuard is the sorting office that stamps the bad ones and ticks the reason on the slip.",
+      "palette": ["#B48A5C", "#F6F5F1", "#1C2238", "#E2382B", "#F2B705"],
+      "materials": ["kraft parcel paper", "thermal address label", "rubber-stamp ink"],
+      "viewport": "Kraft band across the top with the shield mark; a white address label shows where the link really goes; a tilted red stamp reads NOT SAFE; a 'reason for return' slip ticks plain-language reasons; one big Go back button.",
+      "risk": "Turns into a nostalgic post-office costume if the stamp and paper go beyond the signature slip and the header band.",
+      "raised": [
+        {"from": "challenger-bitmap", "raise": "One stamp form at every scale: the in-page badge, popup row, click warning and block page all use the same stamp, from 14px to 120px."},
+        {"from": "challenger-zoo", "raise": "Colour commits whole regions: the kraft band owns the shell and the white label owns the content, with no tints or gradients in between."},
+        {"from": "challenger-jcard", "raise": "A hard line budget: the slip shows at most three reasons in everyday words; anything more sits behind 'More details'."},
+        {"from": "challenger-rail", "raise": "Three inks per surface plus the state colour, with every rule a single hairline."},
+        {"from": "challenger-feed", "raise": "One decision fills the block screen: Go back is under the thumb and on Enter, and everything else is quieter."},
+        {"from": "challenger-emission", "raise": "State is carried by form as well as colour: suspicious gets a dashed outline and one stamp border, dangerous a solid double rule and a filled stamp."}
+      ],
+      "html": ".impeccable/mocks/decision/assigned.html"
+    },
+    {
+      "id": "model-pick",
+      "kind": "pick",
+      "label": "Weather Warning",
+      "kicker": "IMPECCABLE’S PICK",
+      "lineage": "National weather-service yellow / amber / red warnings",
+      "thesis": "Every link gets a warning level with what to do about it, like the weather forecast.",
+      "palette": ["#0E2A3B", "#FFFFFF", "#FFD400", "#FF8A00", "#D7191C"],
+      "materials": ["flat map fills", "broadcast lower-thirds"],
+      "viewport": "A full-width band in the level's colour with 'Red warning: take action', an impact-by-likelihood grid placing this link, and 'What you should do' in three plain lines.",
+      "risk": "Familiar: yellow/amber/red is where most safety UIs land, so it is clear but not distinctive.",
+      "html": ".impeccable/mocks/decision/model-pick.html"
+    },
+    {
+      "id": "challenger-bitmap", "kind": "challenger", "catalogId": "emigre-bitmap-specimen",
+      "label": "Bitmap Specimen", "verdict": "declined",
+      "lineage": "Emigre bitmap type specimens",
+      "thesis": "Warnings set as pixel-type posters.",
+      "palette": ["#FFFFFF", "#111111", "#FF3B00"], "materials": ["bitmap type", "halftone"],
+      "viewport": "A giant pixel headline over dense columns.",
+      "case": "Loses both axes: non-technical people don't identify with type specimens, and pixel lettering slows a warning down.",
+      "risk": "Reads as a design object, not a safety tool.",
+      "kept": "One form repeated at many sizes."
+    },
+    {
+      "id": "challenger-zoo", "kind": "challenger", "catalogId": "aww2-zoo-gardens-guide-map",
+      "label": "Zoo Guide Map", "verdict": "declined",
+      "lineage": "Illustrated zoo and garden guide maps",
+      "thesis": "Sites as lobes of colour on a map.",
+      "palette": ["#8ED462", "#F5F1E4", "#2C2E2A", "#FF705D"], "materials": ["flat colour lobes"],
+      "viewport": "A green headland lobe holding the link.",
+      "case": "Loses both axes: the playful tone undercuts a stop, and a map doesn't explain a link.",
+      "risk": "Too cheerful for a warning.",
+      "kept": "Flat colour that commits to whole regions."
+    },
+    {
+      "id": "challenger-jcard", "kind": "challenger", "catalogId": "vernacular-ephemera-cassette-j-card",
+      "label": "Mixtape J-Card", "verdict": "declined",
+      "lineage": "Hand-lettered cassette inlays",
+      "thesis": "Reasons as a ballpoint tracklist.",
+      "palette": ["#FFFFFF", "#1F3AA8", "#D0011B"], "materials": ["lined inlay card", "ballpoint"],
+      "viewport": "A folded card listing the reasons.",
+      "case": "Loses both axes: handwriting reads informal, the opposite of the trust a block screen needs.",
+      "risk": "Charming but not believable as protection.",
+      "kept": "A hard budget: the sides must not overflow the tape."
+    },
+    {
+      "id": "challenger-rail", "kind": "challenger", "catalogId": "rw-centre-rail-reference-setting",
+      "label": "Centre-Rail Edition", "verdict": "declined",
+      "lineage": "Scholarly reference editions",
+      "thesis": "Reasons as apparatus in the margin.",
+      "palette": ["#EFE8DA", "#141414", "#C2361F"], "materials": ["ruled hairlines", "bone paper"],
+      "viewport": "Twin text columns around a rail of keys.",
+      "case": "Loses both axes: scholarly density is the opposite of a two-second read.",
+      "risk": "Too much to read under stress.",
+      "kept": "One-pixel ruling discipline and three inks."
+    },
+    {
+      "id": "challenger-feed", "kind": "challenger", "catalogId": "pop-culture-shelf-vertical-video-feed-surface",
+      "label": "Vertical Feed", "verdict": "declined",
+      "lineage": "Full-screen vertical video apps",
+      "thesis": "One warning owns the whole screen.",
+      "palette": ["#000000", "#FFFFFF"], "materials": ["full-bleed media", "scrim"],
+      "viewport": "Full-bleed site preview, actions down the right rail.",
+      "case": "Holds focus but loses identity: a feed suggests swiping on, the opposite of stopping.",
+      "risk": "Feels like content, not a stop.",
+      "kept": "One thing owns the viewport; the next action is one gesture away."
+    },
+    {
+      "id": "challenger-emission", "kind": "challenger", "catalogId": "operate-c-emission-line-rail",
+      "label": "Emission Lines", "verdict": "declined",
+      "lineage": "Spectrograph plates",
+      "thesis": "Risk as hairline lines on a charcoal rail.",
+      "palette": ["#2A2B2E", "#E9E4D8", "#F5C400"], "materials": ["charcoal continuum", "hairlines"],
+      "viewport": "A rail of ticks with the link blooming above.",
+      "case": "Loses both axes: abstract and dark-lab, so non-technical people won't read it as a warning.",
+      "risk": "Beautiful and illegible to the audience.",
+      "kept": "State carried by line form, not hue alone."
+    }
+  ],
+  "reroll": {"registers": ["safer", "bolder"]},
+  "buildPath": {"value": "code"},
+  "canon": true,
+  "canonCard": {
+    "kind": "canon",
+    "label": "The category standard",
+    "thesis": "What security apps ship, executed impeccably.",
+    "palette": ["#0B1F3A", "#FFFFFF", "#1E7F4F", "#C62828"],
+    "materials": ["navy shield", "green check", "clean grid"],
+    "viewport": "Navy header with a shield, a red 'Threat blocked' card, Go back / Proceed.",
+    "risk": "Indistinguishable from every antivirus product by design.",
+    "html": ".impeccable/mocks/decision/canon.html"
+  },
+  "steer": true
+}

@@ -1,0 +1,76 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Return to Sender — block page sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root { --kraft:#B48A5C; --kraft-deep:#8E6A42; --label:#F6F5F1; --ink:#1C2238; --ink-2:#4A5068; --stamp:#E2382B; --tag:#F2B705; --rule:#1C223833; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { width:1440px; height:900px; overflow:hidden; }
+  body { background:var(--kraft); color:var(--ink); font:17px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .band { height:72px; display:flex; align-items:center; gap:14px; padding:0 56px; color:var(--ink); }
+  .mark { width:30px; height:34px; }
+  .brand { font:800 22px/1 Archivo,sans-serif; font-stretch:80%; letter-spacing:.04em; text-transform:uppercase; }
+  .band small { margin-left:auto; font-size:14px; font-weight:600; }
+  .sheet { position:absolute; left:56px; right:56px; top:72px; bottom:56px; background:var(--label); border-radius:4px;
+    box-shadow:0 18px 40px #3d2a1433; display:grid; grid-template-columns: 1.15fr .85fr; }
+  .main { padding:64px 72px; border-right:1px solid var(--rule); position:relative; }
+  h1 { font:800 64px/1.02 Archivo,sans-serif; font-stretch:75%; letter-spacing:-.01em; max-width:12ch; text-wrap:balance; }
+  .lede { margin-top:18px; font-size:21px; color:var(--ink-2); max-width:44ch; }
+  .addr { margin-top:40px; border:1px solid var(--ink); border-radius:3px; padding:18px 22px; max-width:640px; position:relative; }
+  .addr .k { font:700 12px/1 Archivo,sans-serif; font-stretch:90%; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-2); }
+  .addr .v { margin-top:8px; font:500 20px/1.35 ui-monospace,"SF Mono",Menlo,monospace; word-break:break-all; }
+  .addr .v b { background:#E2382B1f; color:var(--stamp); font-weight:700; padding:0 3px; }
+  .addr .said { margin-top:12px; font-size:15px; color:var(--ink-2); }
+  .addr .said s { font-family:ui-monospace,Menlo,monospace; color:var(--ink); }
+  .stamp { position:absolute; right:-36px; top:-46px; transform:rotate(-9deg); border:5px double var(--stamp); color:var(--stamp);
+    padding:10px 20px 8px; border-radius:6px; font:900 46px/1 Archivo,sans-serif; font-stretch:68%; letter-spacing:.06em; text-transform:uppercase;
+    background:var(--label); mix-blend-mode:multiply; }
+  .actions { position:absolute; left:72px; bottom:60px; display:flex; align-items:center; gap:28px; }
+  .go-back { background:var(--ink); color:var(--label); border:0; border-radius:10px; padding:20px 40px; font:700 21px/1 system-ui,sans-serif; }
+  .go-back kbd { font:500 13px/1 system-ui; opacity:.6; margin-left:12px; border:1px solid #fff5; border-radius:4px; padding:3px 6px; }
+  .quiet { color:var(--ink-2); font-size:16px; text-decoration:underline; text-underline-offset:4px; }
+  .slip { padding:64px 56px; background:repeating-linear-gradient(transparent 0 47px, var(--rule) 47px 48px); background-position:0 150px; }
+  .slip h2 { font:800 15px/1 Archivo,sans-serif; font-stretch:85%; letter-spacing:.16em; text-transform:uppercase; padding-bottom:22px; border-bottom:2px solid var(--ink); }
+  .slip ul { list-style:none; padding:0; margin-top:10px; }
+  .slip li { display:grid; grid-template-columns:28px 1fr; gap:14px; padding:12px 0; font-size:18px; line-height:1.35; min-height:48px; }
+  .box { width:22px; height:22px; border:1.5px solid var(--ink); border-radius:2px; margin-top:2px; position:relative; }
+  .on .box::after { content:""; position:absolute; left:5px; top:-6px; width:9px; height:20px; border:solid var(--stamp); border-width:0 4px 4px 0; transform:rotate(40deg); }
+  .off { color:var(--ink-2); } .off .box { border-color:#1C223866; }
+  .slip .more { margin-top:18px; font-size:15px; color:var(--ink-2); text-decoration:underline; text-underline-offset:4px; }
+  .slip .foot { position:absolute; bottom:60px; right:56px; width:calc(42% - 112px); font-size:14px; color:var(--ink-2); border-top:1px solid var(--rule); padding-top:14px; }
+</style></head>
+<body>
+  <header class="band">
+    <svg class="mark" viewBox="0 0 30 34" fill="none" stroke="#1C2238" stroke-width="2.5"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+    <span class="brand">LinkGuard</span>
+    <small>Stopped before it opened</small>
+  </header>
+  <main class="sheet">
+    <section class="main">
+      <h1>This link is pretending to be PayPal</h1>
+      <p class="lede">LinkGuard stopped this page before it opened. Pages like this copy a real site to steal your password or card number.</p>
+      <div class="addr">
+        <div class="k">It really goes to</div>
+        <div class="v">http://<b>paypa1</b>-account-verify.xyz/login</div>
+        <div class="said">The link said <s>www.paypal.com</s></div>
+        <div class="stamp">Not safe</div>
+      </div>
+      <div class="actions">
+        <button class="go-back">Go back to safety<kbd>Enter</kbd></button>
+        <span class="quiet">Open anyway</span>
+        <span class="quiet">I trust this site</span>
+      </div>
+    </section>
+    <aside class="slip">
+      <h2>Why it was stopped</h2>
+      <ul>
+        <li class="on"><span class="box"></span>Spells PayPal with a number 1 instead of the letter l</li>
+        <li class="on"><span class="box"></span>The text you clicked showed a different address</li>
+        <li class="on"><span class="box"></span>Asks you to log in without a private connection</li>
+        <li class="off"><span class="box"></span>Known dangerous site (Google check)</li>
+        <li class="off"><span class="box"></span>Downloads a program</li>
+      </ul>
+      <div class="more">More details</div>
+      <p class="foot">Checked on this device. Nothing about this page was sent anywhere.</p>
+    </aside>
+  </main>
+</body></html>

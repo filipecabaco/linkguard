@@ -1,0 +1,39 @@
+{
+  "title": "Shape the LinkGuard install page",
+  "question": "Three ways to lay out the GitHub Pages site, all in the Return to Sender look. Lock one, steer, or re-roll.",
+  "options": [
+    {
+      "id": "site-questions", "kind": "assigned", "kicker": "THE ROLL",
+      "label": "Questions first",
+      "thesis": "The page answers what a nervous person actually asks, and the install steps are one of the answers.",
+      "palette": ["#B48A5C", "#F6F5F1", "#1C2238", "#E2382B", "#F2B705"],
+      "materials": ["return slip", "ruled Q&A", "stamp"],
+      "viewport": "Headline 'Is this link safe?' answered by a stamped example link; to the right, a ruled list of questions with 'How do I install it?' open and its Download button live.",
+      "risk": "If the questions read as an FAQ dump, the install action gets lost; it has to stay the open answer.",
+      "html": ".impeccable/mocks/decision/site-questions.html"
+    },
+    {
+      "id": "site-install", "kind": "dealt",
+      "label": "Install first",
+      "thesis": "Someone you sent here came to install it: the download and three steps own the first screen.",
+      "palette": ["#B48A5C", "#F6F5F1", "#1C2238", "#E2382B"],
+      "materials": ["kraft field", "address label", "numbered steps"],
+      "viewport": "Kraft field with the browser picked automatically, a big Download button and three illustrated steps; the stamp specimen sits beside them as the one line of 'what it does'.",
+      "risk": "Explains least; works best when the person already trusts whoever sent them the link.",
+      "html": ".impeccable/mocks/decision/site-install.html"
+    },
+    {
+      "id": "site-beforeafter", "kind": "dealt",
+      "label": "Before / after",
+      "thesis": "Show the trick: a scam email's link, and the same link stamped NOT SAFE with the reasons.",
+      "palette": ["#B48A5C", "#F6F5F1", "#1C2238", "#E2382B"],
+      "materials": ["email excerpt", "stamp", "reason slip"],
+      "viewport": "A labelled example scam email fills the hero, its PayPal link stamped NOT SAFE with the ticked slip beside it; headline and Download button above.",
+      "risk": "The example email must read clearly as an example, never as a real message.",
+      "html": ".impeccable/mocks/decision/site-beforeafter.html"
+    }
+  ],
+  "reroll": { "registers": ["safer", "bolder"] },
+  "buildPath": { "value": "code" },
+  "steer": true
+}

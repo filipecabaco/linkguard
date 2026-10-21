@@ -1,0 +1,59 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Weather Warning — block page sketch</title>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<style>
+  :root { --night:#0E2A3B; --white:#FFFFFF; --y:#FFD400; --a:#FF8A00; --r:#D7191C; --ink:#0E2A3B; --mute:#4D6575; }
+  * { box-sizing:border-box; margin:0; }
+  html, body { width:1440px; height:900px; overflow:hidden; }
+  body { background:var(--white); color:var(--ink); font:17px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif; }
+  .top { height:64px; background:var(--night); color:#fff; display:flex; align-items:center; gap:12px; padding:0 64px; font:800 20px/1 Archivo,sans-serif; }
+  .top small { margin-left:auto; font:400 14px system-ui; opacity:.8; }
+  .level { background:var(--r); color:#fff; padding:44px 64px 40px; display:flex; align-items:flex-end; gap:40px; }
+  .tri { width:96px; height:84px; flex:none; }
+  .level h1 { font:800 60px/1.02 Archivo,sans-serif; letter-spacing:-.015em; }
+  .level p { font-size:20px; margin-top:10px; opacity:.95; }
+  .body { display:grid; grid-template-columns:1fr 440px; gap:64px; padding:48px 64px; }
+  .k { font:700 13px/1 Archivo,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--mute); }
+  .url { margin-top:10px; font:500 21px/1.35 ui-monospace,Menlo,monospace; word-break:break-all; }
+  h2 { font:800 26px/1.2 Archivo,sans-serif; margin:40px 0 14px; }
+  ol { padding-left:24px; font-size:19px; } ol li { margin:8px 0; }
+  .btns { display:flex; gap:24px; align-items:center; margin-top:40px; }
+  .primary { background:var(--night); color:#fff; border:0; border-radius:8px; padding:18px 36px; font:700 20px system-ui; }
+  .link { color:var(--mute); text-decoration:underline; font-size:16px; }
+  .grid { display:grid; grid-template-columns:40px repeat(4,1fr); grid-template-rows:repeat(4,72px) 32px; gap:4px; font-size:13px; color:var(--mute); }
+  .c { border-radius:3px; } .g{background:#E6EEF2}.y{background:var(--y)}.a{background:var(--a)}.r{background:var(--r)}
+  .here { outline:4px solid var(--night); outline-offset:-4px; position:relative; }
+  .here::after { content:"This link"; position:absolute; left:8px; bottom:8px; color:#fff; font:700 13px system-ui; }
+  .ax { display:flex; align-items:center; justify-content:center; writing-mode:vertical-rl; transform:rotate(180deg); grid-row:1 / 5; }
+  .axx { grid-column:2 / 6; text-align:center; }
+  .why { margin-top:28px; font-size:16px; color:var(--mute); }
+  .why li { margin:6px 0; }
+</style></head>
+<body>
+  <div class="top">LinkGuard <small>Link warning service</small></div>
+  <section class="level">
+    <svg class="tri" viewBox="0 0 96 84"><path d="M48 4 92 80H4Z" fill="#fff"/><path d="M48 30v24" stroke="#D7191C" stroke-width="9" stroke-linecap="round"/><circle cx="48" cy="67" r="5" fill="#D7191C"/></svg>
+    <div><h1>Red warning: do not open this link</h1><p>Take action now. This page copies PayPal to steal your password or card number.</p></div>
+  </section>
+  <section class="body">
+    <div>
+      <div class="k">Where it really goes</div>
+      <div class="url">http://paypa1-account-verify.xyz/login</div>
+      <h2>What you should do</h2>
+      <ol><li>Go back. Don't type any passwords on this page.</li><li>If a message sent you here, delete it.</li><li>To check your account, type paypal.com yourself.</li></ol>
+      <div class="btns"><button class="primary">Go back to safety</button><span class="link">Open anyway</span><span class="link">I trust this site</span></div>
+    </div>
+    <div>
+      <div class="k" style="margin-bottom:14px">Likelihood × impact</div>
+      <div class="grid">
+        <div class="ax">Impact</div>
+        <div class="c y"></div><div class="c a"></div><div class="c r"></div><div class="c r here"></div>
+        <div class="c y"></div><div class="c y"></div><div class="c a"></div><div class="c r"></div>
+        <div class="c g"></div><div class="c y"></div><div class="c y"></div><div class="c a"></div>
+        <div class="c g"></div><div class="c g"></div><div class="c y"></div><div class="c y"></div>
+        <div></div><div class="axx">Likelihood</div>
+      </div>
+      <ul class="why"><li>Spells PayPal with a 1 instead of an l</li><li>The link text showed www.paypal.com</li><li>Login page without a private connection</li></ul>
+    </div>
+  </section>
+</body></html>
