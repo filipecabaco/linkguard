@@ -73,7 +73,7 @@ The page people get sent to is the GitHub Pages site in [`docs/`](docs/index.htm
 **Releasing:** bump `version` in `manifest.json` (and `package.json`), then push a matching tag:
 
 ```sh
-git tag v1.2.0 && git push origin v1.2.0
+git tag v0.1.0 && git push origin v0.1.0
 ```
 
 [`.github/workflows/release.yml`](.github/workflows/release.yml) runs the tests and lint, then attaches these to a GitHub Release:

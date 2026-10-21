@@ -1,4 +1,4 @@
-# Push a tag like v1.2.0 and this attaches ready-to-install builds to a GitHub Release:
+# Push a tag like v0.1.0 and this attaches ready-to-install builds to a GitHub Release:
 #   linkguard-chrome.zip    Chrome, Edge, Brave, Opera, Vivaldi (unzip, then Load unpacked)
 #   linkguard-firefox.zip   for addons.mozilla.org review
 #   linkguard-firefox.xpi   signed by Mozilla, installs permanently by opening it in Firefox
