@@ -47,6 +47,15 @@
         ],
         "createdAt": "2026-10-21T22:29:28.318Z",
         "reason": "Claude: resolved decision-round sketches, not shipped UI"
+      },
+      {
+        "rule": "cramped-padding",
+        "value": "*",
+        "files": [
+          "docs/index.html"
+        ],
+        "createdAt": "2026-10-21T23:53:07.078Z",
+        "reason": "Claude verified, false positive: section.more has padding clamp(56px,8vw,104px) var(--gutter); rendered scans of the live page at 1280x800 and 390x844 report nothing; measured insets 64px/102px desktop, 20px/56px phone. The static scan can't resolve clamp()/var()."
       }
     ]
   }
