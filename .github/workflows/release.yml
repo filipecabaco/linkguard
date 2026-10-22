@@ -1,7 +1,7 @@
 # Push a tag like v0.1.0 and this attaches ready-to-install builds to a GitHub Release:
-#   linkguard-chrome.zip    Chrome, Edge, Brave, Opera, Vivaldi (unzip, then Load unpacked)
-#   linkguard-firefox.zip   for addons.mozilla.org review
-#   linkguard-firefox.xpi   signed by Mozilla, installs permanently by opening it in Firefox
+#   looktwice-chrome.zip    Chrome, Edge, Brave, Opera, Vivaldi (unzip, then Load unpacked)
+#   looktwice-firefox.zip   for addons.mozilla.org review
+#   looktwice-firefox.xpi   signed by Mozilla, installs permanently by opening it in Firefox
 #                           (only when the AMO_JWT_ISSUER / AMO_JWT_SECRET secrets are set)
 name: Release
 
@@ -39,8 +39,8 @@ jobs:
           WEB_EXT_API_SECRET: ${{ secrets.AMO_JWT_SECRET }}
         run: |
           npx web-ext sign --source-dir dist/firefox --channel unlisted --artifacts-dir dist/signed
-          mv dist/signed/*.xpi dist/linkguard-firefox.xpi
+          mv dist/signed/*.xpi dist/looktwice-firefox.xpi
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
-        run: gh release create "$GITHUB_REF_NAME" dist/*.zip $(ls dist/*.xpi 2>/dev/null) --title "LinkGuard $GITHUB_REF_NAME" --generate-notes
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip $(ls dist/*.xpi 2>/dev/null) --title "Look Twice $GITHUB_REF_NAME" --generate-notes

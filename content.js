@@ -1,4 +1,4 @@
-// LinkGuard content script: scans links, flags them, intercepts clicks on risky ones.
+// Look Twice content script: scans links, flags them, intercepts clicks on risky ones.
 (() => {
   const A = self.LinkGuardAnalyzer;
   const seen = new WeakMap();
@@ -114,7 +114,7 @@
         j.harmful < 0.15 && h.score < 60) return { cleared: true };
     const score = Math.max(h.score, j.score);
     const level = score >= 60 ? "dangerous" : score >= 30 ? "suspicious" : "safe";
-    return { score, level, headline: h.headline || "LinkGuard's smart check flagged this link", reasons: [...j.reasons, ...h.reasons] };
+    return { score, level, headline: h.headline || "Look Twice's smart check flagged this link", reasons: [...j.reasons, ...h.reasons] };
   }
 
   function report() {
@@ -133,7 +133,7 @@
     a.dataset.linkguardHeadline = res.headline || "";
     a.classList.add("lg-flag", "lg-" + res.level);
     a.classList.remove(res.level === "dangerous" ? "lg-suspicious" : "lg-dangerous");
-    a.title = `LinkGuard: ${res.headline || (res.level === "dangerous" ? "looks dangerous" : "looks suspicious")}\n` +
+    a.title = `Look Twice: ${res.headline || (res.level === "dangerous" ? "looks dangerous" : "looks suspicious")}\n` +
       res.reasons.slice(0, 3).map(r => "• " + r).join("\n");
 
     let mark = a.querySelector(":scope > .lg-mark");
@@ -144,7 +144,7 @@
     }
     mark.textContent = res.level === "dangerous" ? "!" : "?";
     mark.dataset.level = res.level;
-    mark.setAttribute("aria-label", res.level === "dangerous" ? "LinkGuard: dangerous link" : "LinkGuard: suspicious link");
+    mark.setAttribute("aria-label", res.level === "dangerous" ? "Look Twice: dangerous link" : "Look Twice: suspicious link");
     mark.setAttribute("role", "img");
 
     a.classList.toggle("lg-disabled", settings.mode === "disable" && res.level === "dangerous");
@@ -296,14 +296,14 @@
     const back = h("button", { class: "back", onclick: close }, "Go back to safety");
     const card = h("div", { class: "card", role: "alertdialog", "aria-modal": "true", "aria-labelledby": "lg-h" },
       h("div", { class: "band" },
-        svgMark(), "LinkGuard"),
+        svgMark(), "Look Twice"),
       h("div", { class: "body" },
         h("h2", { id: "lg-h" }, headline),
         h("div", { class: "addr" },
           h("div", { class: "k" }, "It really goes to"),
           markedUrl(a.href),
-          h("div", { class: "stamp" + (sus ? " sus" : ""), "aria-hidden": "true" }, sus ? "Look twice" : "Not safe")),
-        h("p", { class: "slip-h" }, "Why LinkGuard warned you"),
+          h("div", { class: "stamp" + (sus ? " sus" : ""), "aria-hidden": "true" }, sus ? "Be careful" : "Not safe")),
+        h("p", { class: "slip-h" }, "Why Look Twice warned you"),
         h("ul", {}, ...reasons.slice(0, 3).map(r => h("li", { class: sus ? "sus" : "" }, h("span", { class: "box" }), r))),
         locked ? h("p", { class: "locked" }, "Your settings block dangerous links. To open it, mark the site as trusted.") : null,
         h("div", { class: "actions" },

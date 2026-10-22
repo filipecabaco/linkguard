@@ -1,4 +1,4 @@
-// LinkGuard analyzer: local heuristic scoring of URLs. No network calls.
+// Look Twice analyzer: local heuristic scoring of URLs. No network calls.
 // Reasons are written for non-technical people: say what the link does, not how we detected it.
 (function (root) {
   // name: how people know the brand. domains: sites it really owns. cc: also owns brand.<country> (amazon.de, google.fr).

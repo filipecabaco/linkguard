@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Welcome to LinkGuard</title>
+<title>Welcome to Look Twice</title>
 <link rel="stylesheet" href="ui.css">
 <style>
   .sheet { max-width: 1040px; margin: 0 auto clamp(16px, 4vw, 56px); background: var(--label); box-shadow: var(--shadow); border-radius: 0 0 4px 4px; }
@@ -56,28 +56,28 @@
 <body>
   <header class="band">
     <svg class="mark" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
-    <span class="brand">LinkGuard</span>
+    <span class="brand">Look Twice</span>
   </header>
   <div class="wrap"><main class="sheet">
     <section class="access" id="access" hidden>
-      <h2 class="display">One more step: let LinkGuard see websites</h2>
-      <p>Your browser needs your OK before LinkGuard can check links. Press the button, then choose <b>Allow</b>.</p>
-      <div class="row"><button class="btn" id="allowSites">Let LinkGuard check websites</button></div>
+      <h2 class="display">One more step: let Look Twice see websites</h2>
+      <p>Your browser needs your OK before Look Twice can check links. Press the button, then choose <b>Allow</b>.</p>
+      <div class="row"><button class="btn" id="allowSites">Let Look Twice check websites</button></div>
       <p class="status" id="accessStatus" role="status" aria-live="polite"></p>
     </section>
     <section class="hero">
       <div>
-        <h1 class="display">LinkGuard is on.</h1>
+        <h1 class="display">Look Twice is on.</h1>
         <p class="lede">It checks every link you see and stops the dangerous ones before they open. There's nothing you need to set up.</p>
       </div>
-      <div class="specimen" aria-label="What LinkGuard's warnings look like">
+      <div class="specimen" aria-label="What Look Twice's warnings look like">
         <div class="spec">
           <div class="demo"><a class="demo-sus" href="#" tabindex="-1"><span class="m s" aria-hidden="true">?</span>bit.ly/free-gift-card</a></div>
-          <p><b>Yellow, dashed:</b> look twice. LinkGuard asks before opening it.</p>
+          <p><b>Yellow, dashed:</b> be careful. Look Twice asks before opening it.</p>
         </div>
         <div class="spec">
           <div class="demo"><a class="demo-dan" href="#" tabindex="-1"><span class="m d" aria-hidden="true">!</span>www.paypal.com</a></div>
-          <p><b>Red, double line:</b> LinkGuard stops you and explains why.</p>
+          <p><b>Red, double line:</b> Look Twice stops you and explains why.</p>
         </div>
         <div class="spec">
           <div class="demo"><span class="stamp sm">Not safe</span></div>
@@ -88,7 +88,7 @@
 
     <section class="pin">
       <h2 class="display">Keep it in sight</h2>
-      <p id="pinHow">Pin LinkGuard to your toolbar so you can see how many risky links a page has.</p>
+      <p id="pinHow">Pin Look Twice to your toolbar so you can see how many risky links a page has.</p>
     </section>
 
     <section id="smart">
@@ -96,7 +96,7 @@
         <h2 class="display">Smarter checks <span style="color:var(--ink-2)">(optional)</span></h2>
         <div>
           <p>Turn on an AI check called Jev for links that are new or tricky. It catches scams the built-in checks can miss.</p>
-          <p>When it's on, LinkGuard sends the link's address, its words and the name of the website you're on to Jev, made by TypeSafe. Nothing else from the page is sent, and it's only used to judge the link.</p>
+          <p>When it's on, Look Twice sends the link's address, its words and the name of the website you're on to Jev, made by TypeSafe. Nothing else from the page is sent, and it's only used to judge the link.</p>
           <p>You pay TypeSafe directly for what you use. At their listed price, $1 covers tens of thousands of checks.</p>
         </div>
       </div>
@@ -117,14 +117,14 @@
           <span class="box" aria-hidden="true"></span>
           <div>
             <h3>Create a key and copy it</h3>
-            <p>On the API keys page, create a new key. Name it <b>LinkGuard</b> so you can recognise it later. Copy the whole key; it starts with <code>apikey_</code>.</p>
+            <p>On the API keys page, create a new key. Name it <b>Look Twice</b> so you can recognise it later. Copy the whole key; it starts with <code>apikey_</code>.</p>
           </div>
         </li>
         <li class="step" id="s3">
           <span class="box" aria-hidden="true"></span>
           <div>
             <h3>Paste it here</h3>
-            <p>LinkGuard tries one check straight away to make sure the key works. The key stays in this browser.</p>
+            <p>Look Twice tries one check straight away to make sure the key works. The key stays in this browser.</p>
             <div class="row">
               <label class="visually-hidden" for="key">TypeSafe key</label>
               <input type="password" class="code" id="key" autocomplete="off" spellcheck="false" placeholder="apikey_…">
@@ -137,7 +137,7 @@
     </section>
 
     <section class="end">
-      <p id="endText">That's it. You can close this tab; LinkGuard keeps working.</p>
+      <p id="endText">That's it. You can close this tab; Look Twice keeps working.</p>
       <a class="quiet" href="options.html">Open settings</a>
     </section>
   </main></div>

@@ -1,4 +1,4 @@
-/* LinkGuard in-page marks. Injected into every site, so keep it small and specific. State is carried by form, not colour alone:
+/* Look Twice in-page marks. Injected into every site, so keep it small and specific. State is carried by form, not colour alone:
    suspicious = dashed amber outline + "?" sticker, dangerous = double red outline + filled "!" stamp. */
 a.lg-flag { border-radius: 3px; text-decoration-style: wavy !important; text-decoration-thickness: 1.5px !important; }
 a.lg-suspicious { outline: 2px dashed #8A6500 !important; outline-offset: 1px; background-color: rgba(242, 183, 5, .18) !important; text-decoration-color: #8A6500 !important; }

@@ -1,4 +1,4 @@
-// Every link on the test site, with the level LinkGuard should give it at the default threshold.
+// Every link on the test site, with the level Look Twice should give it at the default threshold.
 // test/unit/cases.test.js holds these to the analyzer, so the site's answers never drift from the real checks.
 // Links on *.localhost and 127.0.0.1 really open (the test server answers them); the rest only need to be judged.
 
@@ -27,13 +27,13 @@ function cases(port) {
     { who: "Raj", when: "10 h ago", before: "Printer in the laundry room needs this driver:", href: "https://example.com/setup.msi", text: "Printer driver", expect: "suspicious", check: "Downloads a program" },
     { who: "Unknown sender", when: "11 h ago", before: "Limited spots left!", href: "https://crypto-double.win/airdrop", text: "Double your crypto", expect: "suspicious", check: "Scam ending (.win) + scam wording" },
     { who: "Eva", when: "12 h ago", before: "Shared the minutes from the meeting:", href: "https://dropbx.com/s/report.zip", text: "Meeting minutes", expect: "dangerous", check: "One letter off a brand + compressed file" },
-    { who: "Unknown sender", when: "1 day ago", before: "You've been selected!", href: "javascript:alert('LinkGuard test: this link ran code')", text: "Show my prize", expect: "dangerous", check: "Runs code instead of opening a page" },
+    { who: "Unknown sender", when: "1 day ago", before: "You've been selected!", href: "javascript:alert('Look Twice test: this link ran code')", text: "Show my prize", expect: "dangerous", check: "Runs code instead of opening a page" },
     { who: "Building office", when: "1 day ago", before: "Security update for residents:", href: ip("/paypal/verify.exe"), text: "PayPal security tool", expect: "dangerous", check: "Program download on a bare number (opens a fake page)" },
     { who: "Unknown sender", when: "1 day ago", before: "See the shared file:", href: "data:text/html,<h1>Fake sign-in</h1>", text: "Open the shared document", expect: "dangerous", check: "Hidden content instead of a website" },
     { who: "Nora", when: "1 day ago", before: "Docs for the coding club:", href: "https://nodejs.org/", text: "Node.js", expect: "safe", check: "Text that looks like an address but is a name" }
   ];
 
-  // Added after the page loads, to check that LinkGuard catches links that appear later.
+  // Added after the page loads, to check that Look Twice catches links that appear later.
   const later = [
     { who: "Tom", when: "just now", before: "Sorry, wrong link before. This is the real one:", href: local("paypal-secure-login", "/signin"), text: "Confirm your PayPal details", expect: "dangerous", check: "Added after load (opens a fake page)" },
     { who: "Lena", when: "just now", before: "Delivery tracking for the pasta:", href: "https://www.dhl.de/en/privatkunden.html", text: "DHL Germany", expect: "safe", check: "Added after load, brand's own site" }

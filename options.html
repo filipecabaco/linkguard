@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LinkGuard settings</title>
+<title>Look Twice settings</title>
 <link rel="stylesheet" href="ui.css">
 <style>
   .sheet { max-width: 760px; margin: 0 auto clamp(16px, 4vw, 56px); background: var(--label); box-shadow: var(--shadow); border-radius: 0 0 4px 4px; }
@@ -44,24 +44,24 @@
 <body>
   <header class="band">
     <svg class="mark" viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
-    <span class="brand">LinkGuard</span>
+    <span class="brand">Look Twice</span>
     <span class="band-note">Settings save as you change them</span>
   </header>
   <div class="wrap"><main class="sheet">
     <section>
       <h1 class="display">Settings</h1>
-      <label class="opt"><input type="checkbox" id="enabled"><div><b>LinkGuard is on</b><span>Check links on every page.</span></div></label>
+      <label class="opt"><input type="checkbox" id="enabled"><div><b>Look Twice is on</b><span>Check links on every page.</span></div></label>
       <label class="opt"><input type="checkbox" id="blockNavigation"><div><b>Stop dangerous pages before they open</b><span>Also covers addresses you type, bookmarks and links from other apps.</span></div></label>
 
       <fieldset>
         <legend>When a link looks risky</legend>
-        <label class="opt"><input type="radio" name="mode" value="flag"><div><b>Mark it and ask before opening</b><span>For both "look twice" and "not safe" links. Recommended.</span></div></label>
+        <label class="opt"><input type="radio" name="mode" value="flag"><div><b>Mark it and ask before opening</b><span>For both "be careful" and "not safe" links. Recommended.</span></div></label>
         <label class="opt"><input type="radio" name="mode" value="flag-lite"><div><b>Mark it, only ask for "not safe" links</b><span>Fewer interruptions.</span></div></label>
         <label class="opt"><input type="radio" name="mode" value="disable"><div><b>Mark it and never open "not safe" links</b><span>No "Open anyway". Good for a child's or a parent's computer.</span></div></label>
       </fieldset>
 
       <fieldset>
-        <legend>How careful should LinkGuard be?</legend>
+        <legend>How careful should Look Twice be?</legend>
         <label class="opt"><input type="radio" name="threshold" value="20"><div><b>Extra careful</b><span>Marks more links. Expect a few false alarms.</span></div></label>
         <label class="opt"><input type="radio" name="threshold" value="30"><div><b>Balanced</b><span>Recommended.</span></div></label>
         <label class="opt"><input type="radio" name="threshold" value="45"><div><b>Relaxed</b><span>Marks only clearer cases.</span></div></label>
@@ -70,7 +70,7 @@
 
     <section>
       <h2 class="display">Trusted sites</h2>
-      <p class="hint">LinkGuard won't warn about links to these sites, or check pages on them.</p>
+      <p class="hint">Look Twice won't warn about links to these sites, or check pages on them.</p>
       <ul class="trusted" id="trusted"></ul>
       <form class="add" id="addForm">
         <label class="visually-hidden" for="addSite">Site to trust</label>
@@ -81,7 +81,7 @@
 
     <section id="smart">
       <h2 class="display">Smart checks</h2>
-      <p class="hint">An AI check (Jev by TypeSafe) for links that are new or tricky. When on, LinkGuard sends a link's address, its words and the current site's name. Nothing else from the page is sent.</p>
+      <p class="hint">An AI check (Jev by TypeSafe) for links that are new or tricky. When on, Look Twice sends a link's address, its words and the current site's name. Nothing else from the page is sent.</p>
       <div class="smart-state">
         <span class="pill off" id="smartPill">Off</span>
         <a class="btn" id="setup" href="welcome.html#smart">Set up smart checks</a>

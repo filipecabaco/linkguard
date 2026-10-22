@@ -19,11 +19,11 @@ function render(s) {
   if (!s) {
     $("rescan").hidden = true;
     if (!siteAccess) {
-      setSummary("LinkGuard can't see websites yet", "Your browser needs your OK first.");
+      setSummary("Look Twice can't see websites yet", "Your browser needs your OK first.");
       $("allow").hidden = false;
       return;
     }
-    setSummary("LinkGuard can't check this page", "Browser pages and the extension store are off-limits to extensions.");
+    setSummary("Look Twice can't check this page", "Browser pages and the extension store are off-limits to extensions.");
     return;
   }
   if (!s.enabled) { setSummary("Protection is off", "Turn it back on with the switch above."); $("rescan").hidden = true; return; }
@@ -47,7 +47,7 @@ function render(s) {
     top.className = "top";
     const stamp = document.createElement("span");
     stamp.className = "stamp sm" + (i.level === "dangerous" ? "" : " sus");
-    stamp.textContent = i.level === "dangerous" ? "Not safe" : "Look twice";
+    stamp.textContent = i.level === "dangerous" ? "Not safe" : "Be careful";
     const b = document.createElement("b");
     b.textContent = i.headline || (i.level === "dangerous" ? "This link looks dangerous" : "This link looks suspicious");
     top.append(stamp, b);

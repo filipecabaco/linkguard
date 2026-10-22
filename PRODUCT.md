@@ -7,7 +7,7 @@
 web
 
 ## Users
-Non-technical people (friends, family, coworkers) who the author installs or shares LinkGuard with. They browse, read webmail and chat, and click links. They will not tune settings, read scoring details, or understand terms like "punycode", "TLD" or "API key" unaided. Their job: avoid opening a scam, phishing or malware link without having to think about it, and understand a warning in a couple of seconds when one appears.
+Non-technical people (friends, family, coworkers) who the author installs or shares Look Twice with. They browse, read webmail and chat, and click links. They will not tune settings, read scoring details, or understand terms like "punycode", "TLD" or "API key" unaided. Their job: avoid opening a scam, phishing or malware link without having to think about it, and understand a warning in a couple of seconds when one appears.
 
 ## Product Purpose
 A browser extension that scores every link on a page and every URL opened from the address bar, flags risky ones in place, and stops dangerous ones before they open. It warns instead of silently removing, so people stay in control and learn what a bad link looks like. Success: a person who would have clicked a phishing link stops, understands why, and goes back.
@@ -31,7 +31,7 @@ Local checks run instantly in the browser and work with no account. An optional 
 - Distribution: GitHub Releases plus a GitHub Pages install page (docs/), with store listings later.
 
 ## Brand Commitments
-Name "LinkGuard". Drawn shield-and-tick mark (icons/icon.svg). Link marks: yellow "?" for look twice, red "!" for not safe; stamps read "Look twice" and "Not safe".
+Name "Look Twice". Drawn shield-and-tick mark (icons/icon.svg). Link marks: yellow "?" means be careful, red "!" means not safe; stamps read "Be careful" and "Not safe".
 
 ## Evidence on Hand
 No store listing, screenshots, privacy policy, testimonials or usage data exist yet. Do not fabricate any.

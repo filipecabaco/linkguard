@@ -4,11 +4,11 @@ const $ = id => document.getElementById(id);
 
 function pinInstructions() {
   const ua = navigator.userAgent;
-  if (/Android/i.test(ua) && /Firefox/i.test(ua)) return "Find LinkGuard any time in Firefox's menu (⋮) under Extensions.";
-  if (/Firefox/i.test(ua)) return "Click the puzzle-piece Extensions button at the top right, then the gear next to LinkGuard, then Pin to Toolbar.";
-  if (/Edg\//.test(ua)) return "Click the puzzle-piece Extensions button at the top right, then the eye icon next to LinkGuard.";
-  if (/Safari/i.test(ua) && !/Chrome|Chromium/i.test(ua)) return "LinkGuard's shield sits next to the address bar. If it's missing, open Safari Settings, then Extensions, and tick LinkGuard.";
-  return "Click the puzzle-piece Extensions button at the top right, then the pin next to LinkGuard.";
+  if (/Android/i.test(ua) && /Firefox/i.test(ua)) return "Find Look Twice any time in Firefox's menu (⋮) under Extensions.";
+  if (/Firefox/i.test(ua)) return "Click the puzzle-piece Extensions button at the top right, then the gear next to Look Twice, then Pin to Toolbar.";
+  if (/Edg\//.test(ua)) return "Click the puzzle-piece Extensions button at the top right, then the eye icon next to Look Twice.";
+  if (/Safari/i.test(ua) && !/Chrome|Chromium/i.test(ua)) return "Look Twice's shield sits next to the address bar. If it's missing, open Safari Settings, then Extensions, and tick Look Twice.";
+  return "Click the puzzle-piece Extensions button at the top right, then the pin next to Look Twice.";
 }
 $("pinHow").textContent = pinInstructions() + " The number on it shows how many risky links a page has.";
 
@@ -48,7 +48,7 @@ $("allowSites").onclick = async () => {
   if (await C.requestSiteAccess()) {
     $("access").hidden = true;
   } else {
-    $("accessStatus").textContent = "LinkGuard still can't see websites. Press the button again and choose Allow.";
+    $("accessStatus").textContent = "Look Twice still can't see websites. Press the button again and choose Allow.";
   }
 };
 

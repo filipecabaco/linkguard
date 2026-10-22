@@ -1,5 +1,5 @@
-// Grades each link by what LinkGuard did to it: the content script marks links with lg-suspicious / lg-dangerous.
-const NAMES = { safe: "Safe", suspicious: "Look twice", dangerous: "Not safe" };
+// Grades each link by what Look Twice did to it: the content script marks links with lg-suspicious / lg-dangerous.
+const NAMES = { safe: "Safe", suspicious: "Be careful", dangerous: "Not safe" };
 const levelOf = a => a.classList.contains("lg-dangerous") ? "dangerous" : a.classList.contains("lg-suspicious") ? "suspicious" : "safe";
 const started = Date.now();
 
@@ -35,13 +35,13 @@ function grade() {
     const level = levelOf(a);
     const ok = level === a.dataset.expect;
     if (ok) right++;
-    got.textContent = ok ? "· LinkGuard agreed ✓" : `· LinkGuard said ${NAMES[level]} ✗`;
+    got.textContent = ok ? "· Look Twice agreed ✓" : `· Look Twice said ${NAMES[level]} ✗`;
     got.className = "got " + (ok ? "ok" : "bad");
   }
   const running = document.querySelector(".lg-flag");
   const score = document.getElementById("score");
-  if (!running && Date.now() - started > 3000) score.textContent = "LinkGuard doesn't seem to be running on this page.";
-  else if (running) score.textContent = `LinkGuard matched ${right} of ${links.length - pending} links.`;
+  if (!running && Date.now() - started > 3000) score.textContent = "Look Twice doesn't seem to be running on this page.";
+  else if (running) score.textContent = `Look Twice matched ${right} of ${links.length - pending} links.`;
 }
 setInterval(grade, 500);
 

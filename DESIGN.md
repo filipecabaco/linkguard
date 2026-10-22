@@ -1,6 +1,6 @@
 # Design
 
-World: **Return to Sender.** A link is an address. LinkGuard is the sorting office that checks it, stamps the bad ones and ticks the reason on the return slip. The world lends type, palette, density and one signature move; layout and controls stay standard web.
+World: **Return to Sender.** A link is an address. Look Twice is the sorting office that checks it, stamps the bad ones and ticks the reason on the return slip. The world lends type, palette, density and one signature move; layout and controls stay standard web.
 
 ## Palette
 

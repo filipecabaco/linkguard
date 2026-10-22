@@ -9,7 +9,7 @@ self.LinkGuardConnect = (() => {
   }
 
   function describeTest(t) {
-    if (!t) return { ok: false, text: "Couldn't reach LinkGuard. Reload this page and try again." };
+    if (!t) return { ok: false, text: "Couldn't reach Look Twice. Reload this page and try again." };
     if (t.ok) return { ok: true, text: "Connected. Smart checks are on." };
     if (t.status === 401 || t.status === 403) return { ok: false, text: "TypeSafe didn't accept that key. Copy it again from the TypeSafe console and paste the whole thing." };
     if (t.status === 402) return { ok: false, text: "Your TypeSafe account has run out of credit. Top it up in the TypeSafe console, then try again." };
@@ -22,7 +22,7 @@ self.LinkGuardConnect = (() => {
     return { connected: Boolean(local.jevKey), on: sync.useJev && Boolean(local.jevKey), provider: local.jevProvider, lastError: local.jevLastError };
   }
 
-  // Firefox lets people withhold "access to all websites"; without it LinkGuard can't see links. Chrome grants it at install.
+  // Firefox lets people withhold "access to all websites"; without it Look Twice can't see links. Chrome grants it at install.
   const ALL_SITES = { origins: ["<all_urls>"] };
   const hasSiteAccess = async () => { try { return await chrome.permissions.contains(ALL_SITES); } catch { return true; } };
   const requestSiteAccess = async () => { try { return await chrome.permissions.request(ALL_SITES); } catch { return false; } };
@@ -34,9 +34,9 @@ self.LinkGuardConnect = (() => {
     status,
     // Saves the key, then proves it with one real check; a key that fails leaves smart checks off.
     saveKey: async key => {
-      if (!(await requestConsent())) return { ok: false, text: "LinkGuard needs your permission to send links for smart checks." };
+      if (!(await requestConsent())) return { ok: false, text: "Look Twice needs your permission to send links for smart checks." };
       // Talking to TypeSafe from the extension needs site access too (Firefox can withhold it).
-      if (!(await hasSiteAccess()) && !(await requestSiteAccess())) return { ok: false, text: "LinkGuard needs permission to reach TypeSafe. Press the button again and choose Allow." };
+      if (!(await hasSiteAccess()) && !(await requestSiteAccess())) return { ok: false, text: "Look Twice needs permission to reach TypeSafe. Press the button again and choose Allow." };
       await chrome.storage.local.set({ jevKey: key.trim(), jevProvider: "typesafe", jevModel: "" });
       await chrome.storage.sync.set({ useJev: true });
       const r = describeTest(await send({ type: "jevTest" }));

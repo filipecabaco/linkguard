@@ -2,8 +2,8 @@
 
 Paste-ready text for each store's submission form. Images are in [`images/`](images/), regenerated with `npm run store-images`. If the product name changes, update it here, in the manifest and in the images.
 
-Privacy policy URL (all stores): https://filipecabaco.github.io/linkguard/privacy.html
-Homepage / support URL: https://filipecabaco.github.io/linkguard/ · https://github.com/filipecabaco/linkguard/issues
+Privacy policy URL (all stores): https://filipecabaco.github.io/look-twice/privacy.html
+Homepage / support URL: https://filipecabaco.github.io/look-twice/ · https://github.com/filipecabaco/look-twice/issues
 
 ## Descriptions
 
@@ -13,10 +13,10 @@ Homepage / support URL: https://filipecabaco.github.io/linkguard/ · https://git
 
 **Full description** (Chrome, Edge, AMO):
 
-> LinkGuard checks every link on the pages you visit and marks the risky ones before you click. It also stops dangerous sites before they open, including addresses typed into the address bar. Warnings say what's wrong in plain words, and you decide.
+> Look Twice checks every link on the pages you visit and marks the risky ones before you click. It also stops dangerous sites before they open, including addresses typed into the address bar. Warnings say what's wrong in plain words, and you decide.
 >
 > What you'll see:
-> • Yellow with a dashed outline means look twice. Red with a double outline means not safe. Clicking either shows a short warning first.
+> • Yellow with a dashed outline means be careful. Red with a double outline means not safe. Clicking either shows a short warning first.
 > • A dangerous address opens a full-page stop instead of the site. "Go back to safety" is the big button; "Open anyway" and "I trust this site" are there when you need them.
 > • The toolbar badge counts risky links, and the popup lists them with the reasons.
 >
@@ -28,22 +28,22 @@ Homepage / support URL: https://filipecabaco.github.io/linkguard/ · https://git
 > • Smart checks with Jev by TypeSafe, using your own TypeSafe key, for links that are new or tricky.
 > • Google Safe Browsing, using your own API key.
 >
-> Free and open source: https://github.com/filipecabaco/linkguard
+> Free and open source: https://github.com/filipecabaco/look-twice
 
 **Category:** Privacy & Security where the store offers it, otherwise Tools / Productivity.
 
 ## Single purpose (Chrome)
 
-> LinkGuard protects people from scam, phishing and malware links: it marks risky links on web pages and stops dangerous sites from opening, explaining why in plain words.
+> Look Twice protects people from scam, phishing and malware links: it marks risky links on web pages and stops dangerous sites from opening, explaining why in plain words.
 
 ## Permission reasons
 
 | Permission | Reason to paste |
 |---|---|
 | `storage` | Saves the person's settings (protection on/off, warning level, trusted sites, which optional checks are on) and, if they connect smart checks, their own API key. Nothing is stored about the pages they visit, apart from sites they chose to trust. |
-| `activeTab` | Lets the toolbar popup read the address of the current tab when the person has limited LinkGuard's site access ("on click" or specific sites), so "Trust this site" and the page summary still work for the page they're looking at. |
-| `webNavigation` | Address-bar protection. LinkGuard watches main-frame navigations so it can replace a dangerous page with its stop page as the navigation starts, including addresses typed into the address bar or opened from other apps. It reads only the address being opened. |
-| Host permission `<all_urls>` | LinkGuard's core job is checking links on every website the person visits: the content script reads the address and visible text of each link to mark risky ones and warn before they're opened. Scams arrive on any site (webmail, social media, forums, search results), so protection limited to a list of sites would leave people exposed. Link checks run on the device. |
+| `activeTab` | Lets the toolbar popup read the address of the current tab when the person has limited Look Twice's site access ("on click" or specific sites), so "Trust this site" and the page summary still work for the page they're looking at. |
+| `webNavigation` | Address-bar protection. Look Twice watches main-frame navigations so it can replace a dangerous page with its stop page as the navigation starts, including addresses typed into the address bar or opened from other apps. It reads only the address being opened. |
+| Host permission `<all_urls>` | Look Twice's core job is checking links on every website the person visits: the content script reads the address and visible text of each link to mark risky ones and warn before they're opened. Scams arrive on any site (webmail, social media, forums, search results), so protection limited to a list of sites would leave people exposed. Link checks run on the device. |
 | Content script on `<all_urls>`, all frames | Links inside embedded frames (webmail message bodies, comment widgets) are where many phishing links appear, so those are checked too. |
 | `webRequest`, `webRequestBlocking` (Firefox build only) | Lets Firefox stop a dangerous address before the request is sent, so the dangerous site never receives it. |
 
@@ -81,7 +81,7 @@ Already declared in the manifest's `data_collection_permissions`: required `none
 
 **Notes to reviewer:**
 
-> The built-in checks work with no setup: visit any page with links, or open http://paypa1-account-verify.xyz/login to see the stop page. Smart checks (Jev) and Google Safe Browsing are optional, off by default, and need the user's own API keys, so they can't be exercised without an account. The source is unminified and identical to https://github.com/filipecabaco/linkguard at the submitted version's tag. A local test page with graded examples runs with `npm install && npm run start:testsite`.
+> The built-in checks work with no setup: visit any page with links, or open http://paypa1-account-verify.xyz/login to see the stop page. Smart checks (Jev) and Google Safe Browsing are optional, off by default, and need the user's own API keys, so they can't be exercised without an account. The source is unminified and identical to https://github.com/filipecabaco/look-twice at the submitted version's tag. A local test page with graded examples runs with `npm install && npm run start:testsite`.
 
 ### Edge Add-ons
 

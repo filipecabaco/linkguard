@@ -66,7 +66,7 @@ function frame(title, sub, png, overlay = "") {
   .bar i { width: 11px; height: 11px; border-radius: 50%; background: #1C223833; }
   .shot { display: block; width: 1120px; }
   </style></head><body>
-  <div class="top"><div><h1 class="display">${esc(title)}</h1><p>${esc(sub)}</p></div><div class="brand">${LOGO}LinkGuard</div></div>
+  <div class="top"><div><h1 class="display">${esc(title)}</h1><p>${esc(sub)}</p></div><div class="brand">${LOGO}Look Twice</div></div>
   <div class="win"><div class="bar"><i></i><i></i><i></i></div><img class="shot" src="data:image/png;base64,${png.toString("base64")}">${overlay}</div>
   </body></html>`;
 }
@@ -79,7 +79,7 @@ function promo(w, h, { title, size, stamp, brand }) {
   main { flex: 1; display: flex; align-items: center; justify-content: center; gap: ${size * .4}px; }
   h1 { margin: 0; font-size: ${size}px; text-align: center; }
   .stamp { font-size: ${stamp}px; border-width: ${Math.max(4, stamp / 8)}px; }
-  </style></head><body><div class="band"><div class="brand">${LOGO}LinkGuard</div></div>
+  </style></head><body><div class="band"><div class="brand">${LOGO}Look Twice</div></div>
   <main><h1 class="display">${title}</h1>${stamp ? `<div class="stamp">Not safe</div>` : ""}</main></body></html>`;
 }
 
@@ -144,7 +144,7 @@ const popupOverlay = `<img src="data:image/png;base64,${popupPng.toString("base6
   border-radius: 0 0 8px 8px; box-shadow: 0 14px 34px #1C223855; border: 1px solid #1C223833;">`;
 
 const shots = [
-  ["1-marks", "Risky links get marked before you click", "Yellow means look twice. Red means not safe.", marked],
+  ["1-marks", "Risky links get marked before you click", "Yellow means be careful. Red means not safe.", marked],
   ["2-warning", "It asks before you open a dangerous link", "The reasons are in plain words, and you decide.", warning],
   ["3-stop-page", "Stops dangerous sites, even typed ones", "Going back to safety is the big button.", blocked],
   ["4-popup", "See every risky link on the page", "One click on the toolbar button.", marked, popupOverlay],

@@ -1,20 +1,20 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>LinkGuard: stops scam links before they open</title>
+<title>Look Twice: stops scam links before they open</title>
 <meta name="description" content="A free browser add-on that marks risky links on every page and stops dangerous sites before they open, with the reasons in plain words.">
-<link rel="canonical" href="https://filipecabaco.github.io/linkguard/">
+<link rel="canonical" href="https://filipecabaco.github.io/look-twice/">
 <!-- Link previews: crawlers need absolute URLs. The image is rendered from scripts/og-image.html (npm run og-image). Bump ?v= when the image changes: previews cache images by URL. -->
 <meta property="og:type" content="website">
-<meta property="og:site_name" content="LinkGuard">
-<meta property="og:url" content="https://filipecabaco.github.io/linkguard/">
-<meta property="og:title" content="LinkGuard: is this link safe?">
+<meta property="og:site_name" content="Look Twice">
+<meta property="og:url" content="https://filipecabaco.github.io/look-twice/">
+<meta property="og:title" content="Look Twice: is this link safe?">
 <meta property="og:description" content="Marks risky links and stops dangerous sites before they open. Free, and it works without an account.">
-<meta property="og:image" content="https://filipecabaco.github.io/linkguard/og-image.png?v=2">
+<meta property="og:image" content="https://filipecabaco.github.io/look-twice/og-image.png">
 <meta property="og:image:type" content="image/png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="LinkGuard: Is this link safe? A link that says www.paypal.com really goes to paypa1-account-verify.xyz, stamped Not safe.">
+<meta property="og:image:alt" content="Look Twice: Is this link safe? A link that says www.paypal.com really goes to paypa1-account-verify.xyz, stamped Not safe.">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -166,14 +166,14 @@
 <body>
   <header class="band">
     <div class="band-in">
-      <a class="brand" href="#top" aria-label="LinkGuard home">
+      <a class="brand" href="#top" aria-label="Look Twice home">
         <svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
-        LinkGuard
+        Look Twice
       </a>
       <nav aria-label="Page">
         <a class="nav-install" href="#install">Install</a>
         <a href="#privacy">Privacy</a>
-        <a href="https://github.com/filipecabaco/linkguard">GitHub</a>
+        <a href="https://github.com/filipecabaco/look-twice">GitHub</a>
       </nav>
     </div>
   </header>
@@ -182,15 +182,15 @@
     <div class="first">
       <section class="ask" aria-labelledby="h1">
         <h1 class="display" id="h1">Is this link safe?</h1>
-        <p class="lede">LinkGuard checks every link before you open it, and stops the ones that are trying to trick you.</p>
+        <p class="lede">Look Twice checks every link before you open it, and stops the ones that are trying to trick you.</p>
         <div class="addr" role="img" aria-label="Example: a link showing www.paypal.com really goes to paypa1-account-verify.xyz, stamped Not safe">
           <div class="caps">The link said www.paypal.com. It really goes to</div>
           <div class="addr-url">http://<mark>paypa1-account-verify.xyz</mark>/login</div>
           <p class="addr-why">PayPal spelled with a number 1 · asks for your password on an unsafe page</p>
           <div class="stamp" aria-hidden="true">Not safe</div>
         </div>
-        <p class="example">An example of what LinkGuard shows. The address is made up.</p>
-        <p class="jump"><a href="#seen">See what LinkGuard looks like ↓</a></p>
+        <p class="example">An example of what Look Twice shows. The address is made up.</p>
+        <p class="jump"><a href="#seen">See what Look Twice looks like ↓</a></p>
       </section>
 
       <aside class="slip" aria-labelledby="qs">
@@ -199,7 +199,7 @@
         <details>
           <summary>What does it do?</summary>
           <div class="answer">
-            <p>It looks at every link on the pages you visit. Risky ones get marked: <b>yellow</b> means look twice, <b>red</b> means not safe. Click one and LinkGuard tells you why before anything opens.</p>
+            <p>It looks at every link on the pages you visit. Risky ones get marked: <b>yellow</b> means be careful, <b>red</b> means not safe. Click one and Look Twice tells you why before anything opens.</p>
             <p>If you type or open a dangerous address, you get a full-page stop instead of the site. You can always go back, or open it anyway.</p>
           </div>
         </details>
@@ -233,41 +233,41 @@
 
             <div role="tabpanel" id="p-chrome" aria-labelledby="t-chrome" data-zip="chrome">
               <ol class="steps">
-                <li><span>Download LinkGuard, then double-click the file to unzip it. You get a folder.</span></li>
+                <li><span>Download Look Twice, then double-click the file to unzip it. You get a folder.</span></li>
                 <li><span>Open <code>chrome://extensions</code> in a new tab <button class="copy" data-copy="chrome://extensions">Copy</button></span></li>
                 <li><span>Turn on <b>Developer mode</b> at the top right.</span></li>
-                <li><span>Click <b>Load unpacked</b> and choose the folder. LinkGuard opens a welcome page when it's ready.</span></li>
+                <li><span>Click <b>Load unpacked</b> and choose the folder. Look Twice opens a welcome page when it's ready.</span></li>
               </ol>
             </div>
             <div role="tabpanel" id="p-edge" aria-labelledby="t-edge" data-zip="chrome" hidden>
               <ol class="steps">
-                <li><span>Download LinkGuard, then double-click the file to unzip it. You get a folder.</span></li>
+                <li><span>Download Look Twice, then double-click the file to unzip it. You get a folder.</span></li>
                 <li><span>Open <code>edge://extensions</code> in a new tab <button class="copy" data-copy="edge://extensions">Copy</button></span></li>
                 <li><span>Turn on <b>Developer mode</b> on the left.</span></li>
-                <li><span>Click <b>Load unpacked</b> and choose the folder. LinkGuard opens a welcome page when it's ready.</span></li>
+                <li><span>Click <b>Load unpacked</b> and choose the folder. Look Twice opens a welcome page when it's ready.</span></li>
               </ol>
             </div>
             <div role="tabpanel" id="p-brave" aria-labelledby="t-brave" data-zip="chrome" hidden>
               <ol class="steps">
-                <li><span>Download LinkGuard, then double-click the file to unzip it. You get a folder.</span></li>
+                <li><span>Download Look Twice, then double-click the file to unzip it. You get a folder.</span></li>
                 <li><span>Open <code>brave://extensions</code> (or <code>opera://extensions</code>) in a new tab <button class="copy" data-copy="brave://extensions">Copy</button></span></li>
                 <li><span>Turn on <b>Developer mode</b>.</span></li>
-                <li><span>Click <b>Load unpacked</b> and choose the folder. LinkGuard opens a welcome page when it's ready.</span></li>
+                <li><span>Click <b>Load unpacked</b> and choose the folder. Look Twice opens a welcome page when it's ready.</span></li>
               </ol>
             </div>
             <div role="tabpanel" id="p-firefox" aria-labelledby="t-firefox" data-zip="firefox" hidden>
               <ol class="steps">
                 <li><span>Click Download. If Firefox asks whether to allow the install, choose <b>Continue to installation</b>, then <b>Add</b>.</span></li>
                 <li><span>If it only saved the file: open the menu (≡), then <b>Add-ons and themes</b>, the gear, <b>Install Add-on From File</b>, and pick the file.</span></li>
-                <li><span>When LinkGuard asks to check websites, choose <b>Allow</b>.</span></li>
+                <li><span>When Look Twice asks to check websites, choose <b>Allow</b>.</span></li>
               </ol>
             </div>
             <div role="tabpanel" id="p-safari" aria-labelledby="t-safari" data-zip="" hidden>
-              <p>Safari doesn't have an easy install yet. If you're comfortable with Xcode on a Mac, the <a href="https://github.com/filipecabaco/linkguard#build-and-share">instructions on GitHub</a> show how to build it.</p>
+              <p>Safari doesn't have an easy install yet. If you're comfortable with Xcode on a Mac, the <a href="https://github.com/filipecabaco/look-twice#build-and-share">instructions on GitHub</a> show how to build it.</p>
             </div>
 
             <div class="actions" id="dlRow">
-              <a class="btn" id="download" href="https://github.com/filipecabaco/linkguard/releases/latest/download/linkguard-chrome.zip">
+              <a class="btn" id="download" href="https://github.com/filipecabaco/look-twice/releases/latest/download/looktwice-chrome.zip">
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3v10M5.5 8.5 10 13l4.5-4.5M4 17h12"/></svg>
                 <span id="dlText">Download for Chrome</span>
               </a>
@@ -279,14 +279,14 @@
         <details>
           <summary>What if it warns about a site I trust?</summary>
           <div class="answer">
-            <p>Press <b>I trust this site</b> on the warning and LinkGuard won't warn about it again. You can undo that in LinkGuard's settings.</p>
+            <p>Press <b>I trust this site</b> on the warning and Look Twice won't warn about it again. You can undo that in Look Twice's settings.</p>
           </div>
         </details>
 
         <details>
           <summary>Does it work on my phone?</summary>
           <div class="answer">
-            <p>Not yet. For now LinkGuard is for computers: Chrome, Edge, Brave, Opera and Firefox.</p>
+            <p>Not yet. For now Look Twice is for computers: Chrome, Edge, Brave, Opera and Firefox.</p>
           </div>
         </details>
       </aside>
@@ -294,10 +294,10 @@
 
     <section class="more" id="seen" aria-labelledby="seenH">
       <h2 class="display" id="seenH">What you'll see</h2>
-      <p>LinkGuard stays out of the way until a link looks wrong. Then it shows up in one of three ways.</p>
+      <p>Look Twice stays out of the way until a link looks wrong. Then it shows up in one of three ways.</p>
       <div class="seen">
         <div class="seen-row">
-          <div><h3>A yellow mark: look twice</h3><p>Something about the link is odd, like a short link that hides where it goes. LinkGuard asks before opening it.</p></div>
+          <div><h3>A yellow mark: be careful</h3><p>Something about the link is odd, like a short link that hides where it goes. Look Twice asks before opening it.</p></div>
           <div><span class="demo-link demo-sus"><span class="m s" aria-hidden="true">?</span>bit.ly/free-gift-card</span></div>
         </div>
         <div class="seen-row">
@@ -315,7 +315,7 @@
       <h2 class="display" id="privH">What stays private</h2>
       <ul class="facts">
         <li><span class="tick" aria-hidden="true"></span><div>Links are checked on your computer.<small>The built-in checks never send anything anywhere.</small></div></li>
-        <li><span class="tick" aria-hidden="true"></span><div>No account, no tracking, no ads.<small>LinkGuard has no servers of its own and collects nothing about you.</small></div></li>
+        <li><span class="tick" aria-hidden="true"></span><div>No account, no tracking, no ads.<small>Look Twice has no servers of its own and collects nothing about you.</small></div></li>
         <li><span class="tick" aria-hidden="true"></span><div>Smart checks are off unless you turn them on.<small>When on, only the link's address, its words and the website's name go to TypeSafe to judge the link.</small></div></li>
       </ul>
       <p><a href="privacy.html">Read the full privacy policy</a></p>
@@ -325,17 +325,17 @@
   <footer>
     <a class="brand" href="#top">
       <svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
-      LinkGuard
+      Look Twice
     </a>
-    <p>Open source. Developers: build, tests and source are <a href="https://github.com/filipecabaco/linkguard">on GitHub</a>.</p>
-    <a class="push" href="https://github.com/filipecabaco/linkguard/releases">All versions</a>
+    <p>Open source. Developers: build, tests and source are <a href="https://github.com/filipecabaco/look-twice">on GitHub</a>.</p>
+    <a class="push" href="https://github.com/filipecabaco/look-twice/releases">All versions</a>
   </footer>
 
   <script>
     // Picks the visitor's browser, wires the browser tabs and the Download button, and copies settings addresses
     // (web pages can't link to chrome:// pages, so people paste them into a new tab).
-    const RELEASE = "https://github.com/filipecabaco/linkguard/releases/latest/download/";
-    const FILES = { chrome: "linkguard-chrome.zip", firefox: "linkguard-firefox.xpi" };
+    const RELEASE = "https://github.com/filipecabaco/look-twice/releases/latest/download/";
+    const FILES = { chrome: "looktwice-chrome.zip", firefox: "looktwice-firefox.xpi" };
     const NAMES = { chrome: "Chrome", edge: "Edge", brave: "Brave", firefox: "Firefox", safari: "Safari" };
     const NOTES = {
       chrome: "Chrome may remind you that the add-on came from outside its store. That's expected. New versions don't install themselves; check back here now and then.",
@@ -377,7 +377,7 @@
     const seen = detect();
     select(seen.name);
     document.getElementById("detected").textContent = seen.phone
-      ? "LinkGuard is for computers for now. Open this page on your computer to install it."
+      ? "Look Twice is for computers for now. Open this page on your computer to install it."
       : seen.unknown ? "Pick your browser. It takes about a minute."
       : `Looks like you're using ${NAMES[seen.name]}. It takes about a minute.`;
 

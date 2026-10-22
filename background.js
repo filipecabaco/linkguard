@@ -1,4 +1,4 @@
-// LinkGuard background: toolbar badge, address-bar blocking, Jev (BYOK) link judgments, optional Google Safe Browsing.
+// Look Twice background: toolbar badge, address-bar blocking, Jev (BYOK) link judgments, optional Google Safe Browsing.
 // API keys live only in chrome.storage.local and are only ever sent from here, never from web pages.
 if (typeof importScripts === "function" && !self.LinkGuardAnalyzer) importScripts("analyzer.js");
 const A = self.LinkGuardAnalyzer;
@@ -245,9 +245,9 @@ async function callJev(cfg, state) {
   if (!r.ok) {
     let detail = "";
     try { detail = (await r.text()).slice(0, 200); } catch {}
-    const plain = r.status === 401 || r.status === 403 ? "TypeSafe rejected the key. Check it in LinkGuard's settings."
+    const plain = r.status === 401 || r.status === 403 ? "TypeSafe rejected the key. Check it in Look Twice's settings."
       : r.status === 402 ? "Your account has run out of credit."
-      : r.status === 429 || r.status === 529 ? "Too many checks at once. LinkGuard will try again later."
+      : r.status === 429 || r.status === 529 ? "Too many checks at once. Look Twice will try again later."
       : "The smart-check service had a problem.";
     const err = new Error(`${plain} (Jev API ${r.status}${detail ? ": " + detail : ""})`);
     err.status = r.status;
@@ -331,7 +331,7 @@ async function sbCheck(url) {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        client: { clientId: "linkguard", clientVersion: chrome.runtime.getManifest().version },
+        client: { clientId: "look-twice", clientVersion: chrome.runtime.getManifest().version },
         threatInfo: {
           threatTypes: ["MALWARE", "SOCIAL_ENGINEERING", "UNWANTED_SOFTWARE", "POTENTIALLY_HARMFUL_APPLICATION"],
           platformTypes: ["ANY_PLATFORM"], threatEntryTypes: ["URL"], threatEntries: [{ url }]

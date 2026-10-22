@@ -2,7 +2,7 @@ const { test: base, expect, chromium } = require("@playwright/test");
 const path = require("node:path");
 
 const EXT = path.join(__dirname, "../../dist/chrome");
-const PAGE = "https://news.linkguard.test/";
+const PAGE = "https://news.looktwice.test/";
 const PHISH = "http://paypa1-account-verify.xyz/login";
 
 const HTML = `<!doctype html><title>News</title>

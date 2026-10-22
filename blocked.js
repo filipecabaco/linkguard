@@ -1,6 +1,6 @@
 // Block page: shown instead of a dangerous page opened from the address bar, a bookmark or another app.
 // It's web-accessible (Firefox redirects need that), so refuse to work inside another site's frame: no clickjacking "trust".
-if (window.top !== window) { document.documentElement.textContent = ""; throw new Error("LinkGuard: block page can't be framed"); }
+if (window.top !== window) { document.documentElement.textContent = ""; throw new Error("Look Twice: block page can't be framed"); }
 const A = self.LinkGuardAnalyzer;
 const $ = id => document.getElementById(id);
 const params = new URLSearchParams(location.search);
@@ -36,7 +36,7 @@ function highlight(url) {
 function render(v) {
   const level = v.level === "dangerous" ? "dangerous" : "suspicious";
   $("headline").textContent = v.headline || "This link looks dangerous";
-  document.title = `LinkGuard stopped this page: ${v.headline || "dangerous link"}`;
+  document.title = `Look Twice stopped this page: ${v.headline || "dangerous link"}`;
   const lede = LEDES[v.kind];
   if (lede) $("lede").textContent = lede(v.brand);
   if (v.threat) $("lede").textContent = "Google lists this page as dangerous. It may try to steal your details or install harmful software.";
@@ -59,7 +59,7 @@ function render(v) {
     const all = $("allReasons");
     all.textContent = "";
     for (const r of v.reasons) { const li = document.createElement("li"); li.textContent = r; all.append(li); }
-    $("score").textContent = `Risk score ${v.score}/100. LinkGuard stops pages at 60 and above.`;
+    $("score").textContent = `Risk score ${v.score}/100. Look Twice stops pages at 60 and above.`;
   }
   const remote = [v.threat && "Google Safe Browsing", v.jev && "Jev"].filter(Boolean);
   $("privacy").textContent = remote.length
