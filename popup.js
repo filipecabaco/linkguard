@@ -39,7 +39,7 @@ function render(s) {
   const bad = s.items.filter(i => i.level === "dangerous").length;
   setSummary(
     bad ? `${plural(bad, "link isn't", "links aren't")} safe` : `${plural(risky, "link needs", "links need")} a look`,
-    `Checked ${plural(s.scanned, "link", "links")} on ${s.host}.${bad && risky > bad ? ` ${risky - bad} more look odd.` : ""}`);
+    `Checked ${plural(s.scanned, "link", "links")} on ${s.host}.${bad && risky > bad ? ` ${plural(risky - bad, "more looks", "more look")} odd.` : ""}`);
 
   for (const i of s.items.sort((a, b) => b.score - a.score).slice(0, 30)) {
     const li = document.createElement("li");

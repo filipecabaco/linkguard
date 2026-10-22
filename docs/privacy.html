@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Privacy policy · LinkGuard</title>
+<meta name="description" content="What LinkGuard keeps on your device, what it sends only if you turn it on, and what it never does.">
+<link rel="canonical" href="https://filipecabaco.github.io/linkguard/privacy.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&display=swap" rel="stylesheet">
+<!-- The store listings link here. Keep it in step with PRIVACY.md in the repo root. -->
+<style>
+  :root {
+    color-scheme: light;
+    --kraft: #B48A5C; --on-kraft: #1C2238; --label: #F6F5F1; --ground: #E9E4DA;
+    --ink: #1C2238; --ink-2: #4A5068; --rule: #1C223833; --ok: #2E6B4A; --link: #1A4FB5;
+    --display: "Archivo", "Arial Narrow", "Roboto Condensed", system-ui, sans-serif;
+    --body: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --gutter: clamp(16px, 5vw, 72px);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --kraft: #4A3826; --on-kraft: #F1E6D6; --label: #1E2129; --ground: #17191F;
+      --ink: #ECEAE4; --ink-2: #A9AEBC; --rule: #ECEAE42E; --ok: #7CC79D; --link: #8AB4F8;
+    }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--label); color: var(--ink); font: 18px/1.6 var(--body); }
+  :focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 4px; }
+  a { color: var(--link); text-underline-offset: 4px; }
+  .band, footer { background: var(--kraft); color: var(--on-kraft); padding: 0 var(--gutter); }
+  .band { padding-top: env(safe-area-inset-top, 0px); }
+  .band :focus-visible, footer :focus-visible { outline-color: var(--on-kraft); }
+  .band-in { min-height: 68px; display: flex; align-items: center; }
+  .brand { display: flex; align-items: center; gap: 12px; color: inherit; text-decoration: none; font: 800 21px/1 var(--display); font-stretch: 80%; letter-spacing: .05em; text-transform: uppercase; }
+  .brand svg { width: 26px; height: 30px; }
+  main { max-width: 760px; padding: clamp(40px, 7vw, 88px) var(--gutter) 72px; }
+  h1 { margin: 0; font: 800 clamp(48px, 7vw, 88px)/.95 var(--display); font-stretch: 72%; letter-spacing: -.015em; }
+  .updated { margin: 14px 0 0; color: var(--ink-2); font-size: 16px; }
+  .lede { margin: 24px 0 0; font-size: 21px; color: var(--ink-2); }
+  h2 { margin: 48px 0 0; padding-bottom: 10px; border-bottom: 2px solid var(--ink); font: 700 14px/1.2 var(--display); font-stretch: 88%; letter-spacing: .15em; text-transform: uppercase; }
+  p, ul { margin: 16px 0 0; }
+  ul { padding-left: 22px; }
+  li { margin: 6px 0; }
+  footer { padding-block: 28px calc(28px + env(safe-area-inset-bottom, 0px)); display: flex; flex-wrap: wrap; gap: 12px 32px; align-items: center; font-size: 16px; }
+  footer a:not(.brand) { color: inherit; }
+</style></head>
+<body>
+  <header class="band"><div class="band-in">
+    <a class="brand" href="./" aria-label="LinkGuard home">
+      <svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+      LinkGuard
+    </a>
+  </div></header>
+
+  <main>
+    <h1>Privacy policy</h1>
+    <p class="updated">Last updated 22 October 2026</p>
+    <p class="lede">LinkGuard checks links in your browser to warn you about scams, phishing and dangerous downloads.</p>
+
+    <h2>What stays on your device</h2>
+    <p>By default, everything. LinkGuard's built-in checks run entirely inside your browser and send nothing anywhere. Your settings and trusted sites are stored by your browser. If your browser syncs extension settings, they sync with your own browser account; keys never do.</p>
+
+    <h2>What is sent, and only if you turn it on</h2>
+    <p><b>Smart checks (Jev).</b> If you connect smart checks, LinkGuard sends, for each link it checks:</p>
+    <ul>
+      <li>the link's address,</li>
+      <li>the visible words of the link,</li>
+      <li>the name of the website you're on.</li>
+    </ul>
+    <p>It also sends the address of a page you open from a different site, to check it again once it has opened. Nothing else is sent for those pages.</p>
+    <p>These go directly to TypeSafe's Jev model (api.typesafe.ai). They're used only to judge whether the link is safe. LinkGuard sends nothing else from the page: no page content, passwords, form data or cookies.</p>
+    <p><b>Google Safe Browsing.</b> If you turn it on, LinkGuard sends link addresses, and the addresses of pages you open, to Google's Safe Browsing service to check them against Google's list of dangerous sites.</p>
+    <p>You can turn either off at any time in LinkGuard's settings. Disconnecting smart checks deletes the stored key.</p>
+
+    <h2>What LinkGuard never does</h2>
+    <ul>
+      <li>It doesn't sell, share or use your data for advertising.</li>
+      <li>It doesn't collect analytics, and it has no servers of its own.</li>
+      <li>It doesn't send anything to its author.</li>
+    </ul>
+
+    <h2>Keys</h2>
+    <p>API keys you connect are stored only in your browser's local extension storage. They're used only by LinkGuard's background process to talk to the service you chose, and are never exposed to websites.</p>
+
+    <h2>Third-party services</h2>
+    <p>When enabled, each service's own policy applies:</p>
+    <ul>
+      <li><a href="https://typesafe.ai">TypeSafe</a></li>
+      <li><a href="https://policies.google.com/privacy">Google Safe Browsing</a></li>
+    </ul>
+
+    <h2>Contact</h2>
+    <p>Questions: <a href="https://github.com/filipecabaco/linkguard/issues">open an issue on GitHub</a>.</p>
+  </main>
+
+  <footer>
+    <a class="brand" href="./">
+      <svg viewBox="0 0 30 34" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M15 2 3 6.5v9.2C3 24 8.6 29.6 15 32c6.4-2.4 12-8 12-16.3V6.5L15 2Z"/><path d="M9 17.5l4 4 8-9"/></svg>
+      LinkGuard
+    </a>
+    <a href="./">Back to the LinkGuard site</a>
+  </footer>
+</body></html>

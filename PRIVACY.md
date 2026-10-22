@@ -1,5 +1,7 @@
 # LinkGuard privacy policy
 
+Last updated 22 October 2026. Published at https://filipecabaco.github.io/linkguard/privacy.html (docs/privacy.html); keep the two in step.
+
 LinkGuard checks links in your browser to warn you about scams, phishing and dangerous downloads.
 
 ## What stays on your device
@@ -13,9 +15,11 @@ By default, everything. LinkGuard's built-in checks run entirely inside your bro
 - the visible words of the link,
 - the name of the website you're on.
 
+It also sends the address of a page you open from a different site, to check it again once it has opened. Nothing else is sent for those pages.
+
 These go directly to TypeSafe's Jev model (api.typesafe.ai). They're used only to judge whether the link is safe. LinkGuard sends nothing else from the page: no page content, passwords, form data or cookies.
 
-**Google Safe Browsing.** If you turn it on, LinkGuard sends link addresses to Google's Safe Browsing service to check them against Google's list of dangerous sites.
+**Google Safe Browsing.** If you turn it on, LinkGuard sends link addresses, and the addresses of pages you open, to Google's Safe Browsing service to check them against Google's list of dangerous sites.
 
 You can turn either off at any time in LinkGuard's settings. Disconnecting smart checks deletes the stored key.
 
@@ -37,4 +41,4 @@ When enabled, each service's own policy applies:
 
 ## Contact
 
-Questions: open an issue in the project's repository.
+Questions: open an issue at https://github.com/filipecabaco/linkguard/issues.

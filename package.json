@@ -6,6 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "og-image": "node scripts/og-image.mjs",
+    "store-images": "node scripts/store-images.mjs",
     "test": "node --test \"test/unit/**/*.test.js\"",
     "test:e2e": "node scripts/build.mjs chrome && playwright test",
     "test:firefox": "node scripts/build.mjs firefox && node --test \"test/firefox/**/*.test.js\"",

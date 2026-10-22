@@ -111,6 +111,8 @@ npm run safari           # Xcode project in safari/ (needs Xcode)
 - **Firefox:** event page plus blocking `webRequest`.
 - **Safari:** non-persistent background page.
 
+Listing text, permission reasons, data disclosures and store images are ready in [`store/`](store/listing.md) (`npm run store-images` regenerates the images).
+
 **Where to publish, for people who aren't technical:**
 
 | Browser | Where | Cost | Notes |
@@ -120,4 +122,4 @@ npm run safari           # Xcode project in safari/ (needs Xcode)
 | Firefox desktop + Android | addons.mozilla.org | Free | Use a *listed* add-on: Android only installs from AMO in practice. |
 | Safari macOS + iOS | App Store / TestFlight | $99/yr Apple Developer Program | Local testing is free: Safari → Settings → Developer → *Allow unsigned extensions*, then build `safari/` in Xcode. |
 
-Before publishing, change the placeholder IDs: `browser_specific_settings.gecko.id` in `manifest.json` and the Safari bundle identifier in `package.json`. Also host [PRIVACY.md](PRIVACY.md) somewhere public; the stores ask for a URL.
+Before publishing, change the placeholder IDs: `browser_specific_settings.gecko.id` in `manifest.json` and the Safari bundle identifier in `package.json`. The stores ask for a privacy policy URL: https://filipecabaco.github.io/linkguard/privacy.html (keep it in step with [PRIVACY.md](PRIVACY.md)).
